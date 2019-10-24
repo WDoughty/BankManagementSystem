@@ -7,8 +7,8 @@ to add accounts, delete accounts, deposit funds, withdraw funds, check balances,
 and transfer funds for clients.
   
   
- #Use Cases
-##Iteration 1 
+ # Use Cases
+Iteration 1 
  Add Funds
  Withdraw Funds
  Create Account 
@@ -16,7 +16,7 @@ and transfer funds for clients.
  Transfer Funds 
  Check Balance
  
-##Iteration 2-3
+Iteration 2-3
  Calculate Interest
  Print Receipt 
  
