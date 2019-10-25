@@ -1,0 +1,1 @@
+10/24/19 - Will - Implemented User and Account classes/interfaces/controllers. Need to still make Exception classes specific to project design (for withdrawing money when account balance is not great enough). Made Database and DatabaseInterface classes but I havent implemented them yet. Look into doing SQLite. 
