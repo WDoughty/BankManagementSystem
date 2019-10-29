@@ -13,12 +13,13 @@ Iteration 1
  Withdraw Funds
  Create Account 
  Delete Account
- Transfer Funds 
+ Create Client 
  Check Balance
  
 Iteration 2-3
  Calculate Interest
  Print Receipt 
+ Transfer Funds
  
 
  
