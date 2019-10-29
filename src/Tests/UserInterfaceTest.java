@@ -1,5 +1,9 @@
 package Tests;
 
+import Account.Account;
+import Account.AccountInterface;
+import Account.AccountControllerInterface;
+import Account.AccountController;
 import User.Client;
 import User.Employee;
 import User.UserController;
@@ -35,6 +39,11 @@ public class UserInterfaceTest {
         userController2.setUserAccountNumber(accountNumber);
         assertEquals(accountNumber,userController2.getUserAccountNumber());
         assertNotEquals("4321",userController2.getUserAccountNumber());
+
+        AccountInterface account = new Account((Client)user1, accountNumber);
+        AccountControllerInterface controller = new AccountController(account);
+        controller.deposit(10);
+        assertEquals(10.00,controller.getBalance(),0);
 
     }
 
