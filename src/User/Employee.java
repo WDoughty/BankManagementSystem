@@ -31,6 +31,14 @@ public class Employee implements UserInterface {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    /** 
+    * Returns the password of the current user.
+    * @return password
+    */
+    public void getPassword() {
+        return password;
+    }
 
     /**
      * Returns the name of the current user
