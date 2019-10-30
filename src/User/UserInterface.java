@@ -15,4 +15,8 @@ public interface UserInterface {
      */
     String getName();
 
+    void setPassword();
+
+    String getPassword();
+
 }
