@@ -17,7 +17,7 @@ public class AccountController implements AccountControllerInterface {
      * @return balance
      */
     @Override
-    public float getBalance() {
+    public double getBalance() {
         return model.getBalance();
     }
 
@@ -26,7 +26,7 @@ public class AccountController implements AccountControllerInterface {
      * @param amount
      */
     @Override
-    public void deposit(float amount) {
+    public void deposit(double amount) {
         model.deposit(amount);
     }
 
@@ -35,7 +35,7 @@ public class AccountController implements AccountControllerInterface {
      * @param amount
      */
     @Override
-    public void withdraw(float amount) {
+    public void withdraw(double amount) {
         model.withdraw(amount);
     }
 
@@ -45,7 +45,7 @@ public class AccountController implements AccountControllerInterface {
      * @return boolean
      */
     @Override
-    public boolean isSufficientFunds(float amount) {
+    public boolean isSufficientFunds(double amount) {
         return model.isSufficientFunds(amount);
     }
 

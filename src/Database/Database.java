@@ -1,11 +1,14 @@
 package Database;
 
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import User.Client;
+import User.Employee;
+
+
+import java.util.Set;
 
 public class Database implements DatabaseInterface {
+    private Set<Employee> employeeSet;
+    private Set<Client> clientSet;
 
 
 }

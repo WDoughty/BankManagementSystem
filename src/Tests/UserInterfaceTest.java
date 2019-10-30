@@ -4,6 +4,8 @@ import Account.Account;
 import Account.AccountInterface;
 import Account.AccountControllerInterface;
 import Account.AccountController;
+import HR.Paycheck;
+import HR.PaycheckInterface;
 import User.Client;
 import User.Employee;
 import User.UserController;
@@ -52,9 +54,16 @@ public class UserInterfaceTest {
         String name  = "Test";
         UserInterface user3 = new Employee();
         UserController userController3 = new UserController(user3);
+        userController3.setEmployeeNumber("1234");
         userController3.setUserName(name);
         assertEquals("IncorrectUserException",userController3.getUserAccountNumber());
+        userController3.setHoursWorked(10);
+        userController3.setHourlyPay(10);
+        PaycheckInterface paycheck = new Paycheck(userController3);
+        paycheck.printPayStub();
 
+        userController3.getTimeCard().testClockInOut();
+        System.out.println(userController3.getTimeCard().getWorkedHours());
 
 
     }

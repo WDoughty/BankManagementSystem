@@ -12,4 +12,5 @@ public class Administrator implements UserInterface {
     public String getName() {
         return name;
     }
+
 }

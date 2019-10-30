@@ -1,5 +1,7 @@
 package User;
 
+import HR.EmployeeTimeCardInterface;
+
 public class UserController {
     private UserInterface model;
 
@@ -63,6 +65,44 @@ public class UserController {
         else{
             return "IncorrectUserException"; //Create exception class
         }
+    }
 
+    public double getEmployeeHourlyPay(){
+        if(model instanceof Employee){
+            return ((Employee)model).getHourlyPay();
+        }
+        else{
+            return 0.0; //exception
+        }
+    }
+
+    public double getEmployeeHoursWorked(){
+        if(model instanceof Employee){
+            return ((Employee) model).getHoursWorked();
+        }
+        else{
+            return 0.0; //Exception
+        }
+    }
+
+    public void setHoursWorked(double hoursWorked){
+        if(model instanceof Employee){
+            ((Employee) model).setHoursWorked(hoursWorked);
+        }
+    }
+
+    public void setHourlyPay(double hourlyPay){
+        if(model instanceof Employee){
+            ((Employee) model).setHourlyPay(hourlyPay);
+        }
+    }
+
+    public EmployeeTimeCardInterface getTimeCard(){
+        if(model instanceof  Employee){
+            return ((Employee) model).getTimeCard();
+        }
+        else{
+        return null;
+        }
     }
 }

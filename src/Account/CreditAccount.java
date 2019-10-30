@@ -3,7 +3,7 @@ package Account;
 import User.Client;
 
 public class CreditAccount extends Account {
-    private float creditLine;
+    private double creditLine;
 
     /**
      * Creates new account for client with account number
@@ -14,6 +14,8 @@ public class CreditAccount extends Account {
     public CreditAccount(Client client, String accountNumber) {
         super(client, accountNumber);
     }
+
+
 
     //Calc interest
 }

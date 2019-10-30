@@ -4,9 +4,10 @@ import User.Employee;
 
 public interface PaycheckInterface {
 
-    void getEmployee();
+    void getEmployeeName();
+    void getEmployeeNumber();
     void getHoursWorked();
     void getHourlyPay();
-    float calculatePay(float hoursWorked, float hourlyPay);
+    double calculatePay(double hoursWorked, double hourlyPay);
     void printPayStub();
 }

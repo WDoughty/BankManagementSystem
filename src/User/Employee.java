@@ -1,10 +1,18 @@
 package User;
 
+import HR.EmployeeTimeCard;
+import HR.EmployeeTimeCardInterface;
+
 public class Employee implements UserInterface {
     public String name;
     private String employeeNumber;
-    private float hoursWorked;
-    private float hourlyPay;
+    private double hoursWorked;
+    private double hourlyPay;
+    private EmployeeTimeCardInterface timeCard;
+
+    public Employee(){
+        timeCard = new EmployeeTimeCard();
+    }
 
     /**
      * Sets the name of the current user
@@ -40,11 +48,11 @@ public class Employee implements UserInterface {
         return employeeNumber;
     }
 
-    public float getHoursWorked(){
+    public double getHoursWorked(){
         return hoursWorked;
     }
 
-    public void setHoursWorked(float hoursWorked){
+    public void setHoursWorked(double hoursWorked){
         this.hoursWorked += hoursWorked;
     }
 
@@ -52,13 +60,16 @@ public class Employee implements UserInterface {
         hoursWorked = 0;
     }
 
-    public float getHourlyPay(){
+    public double getHourlyPay(){
         return hourlyPay;
     }
 
-    public void setHourlyPay(float hourlyPay){
+    public void setHourlyPay(double hourlyPay){
         this.hourlyPay = hourlyPay;
     }
 
+    public EmployeeTimeCardInterface getTimeCard(){
+        return timeCard;
+    }
 
 }

@@ -6,25 +6,25 @@ public interface AccountControllerInterface {
      * Requests balance from model account
      * @return balance
      */
-    float getBalance();
+    double getBalance();
 
     /**
      * Deposits amount in model account
      * @param amount
      */
-    void deposit(float amount);
+    void deposit(double amount);
 
    /**
      * Withdraws amount from model account if there is sufficient funds
      * @param amount
      */
-    void withdraw(float amount);
+    void withdraw(double amount);
 
     /**
      * Checks if there is sufficient funds for amount in the model account
      * @param amount
      * @return boolean
      */
-    boolean isSufficientFunds(float amount);
+    boolean isSufficientFunds(double amount);
 
 }

@@ -3,7 +3,7 @@ import User.Client;
 
 
 public class Account implements AccountInterface {
-    private float balance;
+    private double balance;
     private Client client;
     private String accountNumber;
 
@@ -24,8 +24,8 @@ public class Account implements AccountInterface {
      * @param amount Integer
      */
     @Override
-    public void deposit(float amount) {
-        balance+=amount; // Could change this from int to float/double
+    public void deposit(double amount) {
+        balance+=amount; // Could change this from int to double/double
 
     }
 
@@ -35,7 +35,7 @@ public class Account implements AccountInterface {
      * @param amount
      */
     @Override
-    public void withdraw(float amount) {
+    public void withdraw(double amount) {
         if(isSufficientFunds(amount)){
             balance-=amount;
         }
@@ -49,7 +49,7 @@ public class Account implements AccountInterface {
      * @return boolean
      */
     @Override
-    public boolean isSufficientFunds(float amount) {
+    public boolean isSufficientFunds(double amount) {
         if(balance-amount>0){
             return true;
         }
@@ -61,7 +61,7 @@ public class Account implements AccountInterface {
      * @return balance
      */
     @Override
-    public float getBalance() {
+    public double getBalance() {
         return balance;
     }
 }
