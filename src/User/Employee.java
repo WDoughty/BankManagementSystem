@@ -6,6 +6,7 @@ import HR.EmployeeTimeCardInterface;
 public class Employee implements UserInterface {
     public String name;
     private String employeeNumber;
+    private String password;
     private double hoursWorked;
     private double hourlyPay;
     private EmployeeTimeCardInterface timeCard;
