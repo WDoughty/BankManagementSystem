@@ -35,8 +35,11 @@ public class EmployeeTimeCard implements EmployeeTimeCardInterface {
         return hours;
     }
 
-    public void testClockInOut(){
-        startTime =  8*60;
-        stopTime = 18*60;
+    /**
+     * This method is only used for testing. Given in minutes
+     */
+    public void testClockInOut(int startTime, int stopTime){
+        this.startTime =  startTime*60;
+        this.stopTime = stopTime*60;
     }
 }

@@ -8,8 +8,8 @@ public class Paycheck implements PaycheckInterface {
     private double hoursWorked, hourlyPay;
     private UserController employeeController;
 
-    public Paycheck(UserController employee) {
-       employeeController = employee;
+    public Paycheck(UserController employeeController) {
+       this.employeeController = employeeController;
        getEmployeeName();
        getEmployeeNumber();
        getHoursWorked();
@@ -45,5 +45,12 @@ public class Paycheck implements PaycheckInterface {
     public void printPayStub() {
         System.out.printf("%S %s %nHours worked: %5.2f Hourly pay: $%5.2f %n$%.2f\n", employeeName,employeeNumber,hoursWorked,hourlyPay,calculatePay(hoursWorked,hourlyPay));
 
+    }
+    @Override
+    public void paycheckUpdate(){
+        getEmployeeName();
+        getEmployeeNumber();
+        getHoursWorked();
+        getHourlyPay();
     }
 }

@@ -3,6 +3,7 @@ package Account;
 import User.Client;
 
 public class LoanAccount extends Account {
+    private double interestRate;
     /**
      * Creates new account for client with account number
      *
@@ -11,6 +12,14 @@ public class LoanAccount extends Account {
      */
     public LoanAccount(Client client, String accountNumber) {
         super(client, accountNumber);
+    }
+
+    public void setInterestRate(double interestRate){
+        this.interestRate = interestRate;
+    }
+
+    public double getInterestRate(){
+        return interestRate;
     }
 
     //Calc interest

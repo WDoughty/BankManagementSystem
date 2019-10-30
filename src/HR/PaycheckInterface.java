@@ -10,4 +10,5 @@ public interface PaycheckInterface {
     void getHourlyPay();
     double calculatePay(double hoursWorked, double hourlyPay);
     void printPayStub();
+    void paycheckUpdate();
 }

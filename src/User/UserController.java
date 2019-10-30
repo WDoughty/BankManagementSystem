@@ -105,4 +105,10 @@ public class UserController {
         return null;
         }
     }
+
+    public void resetHoursWorked(){
+        if(model instanceof Employee){
+            ((Employee) model).resetHoursWorked();
+        }
+    }
 }

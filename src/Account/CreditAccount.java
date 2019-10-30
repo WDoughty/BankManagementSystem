@@ -4,6 +4,7 @@ import User.Client;
 
 public class CreditAccount extends Account {
     private double creditLine;
+    private double interestRate;
 
     /**
      * Creates new account for client with account number
@@ -15,6 +16,17 @@ public class CreditAccount extends Account {
         super(client, accountNumber);
     }
 
+    public void setInterestRate(double interestRate){
+        this.interestRate = interestRate;
+    }
+
+    public void setCreditLine(double creditLine){
+        this.creditLine = creditLine;
+    }
+
+    public double getInterestRate(){
+        return interestRate;
+    }
 
 
     //Calc interest

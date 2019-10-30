@@ -7,6 +7,12 @@ public interface EmployeeTimeCardInterface {
     void clockIn();
     void clockOut();
     double getWorkedHours();
-    void testClockInOut();
+
+    /**
+     * this method is only for testing purposes. Times given in minutes
+     * @param startTime
+     * @param stopTime
+     */
+    void testClockInOut(int startTime,int stopTime);
 
 }

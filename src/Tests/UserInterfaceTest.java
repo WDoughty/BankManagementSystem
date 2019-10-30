@@ -61,9 +61,12 @@ public class UserInterfaceTest {
         userController3.setHourlyPay(10);
         PaycheckInterface paycheck = new Paycheck(userController3);
         paycheck.printPayStub();
+        userController3.resetHoursWorked();
+        userController3.setHourlyPay(10);
+        userController3.setHoursWorked(40);
+        paycheck.paycheckUpdate();
+        paycheck.printPayStub();
 
-        userController3.getTimeCard().testClockInOut();
-        System.out.println(userController3.getTimeCard().getWorkedHours());
 
 
     }

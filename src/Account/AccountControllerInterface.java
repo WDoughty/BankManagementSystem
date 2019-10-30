@@ -27,4 +27,9 @@ public interface AccountControllerInterface {
      */
     boolean isSufficientFunds(double amount);
 
+    void setInterestRate(double interestRate);
+
+    double getInterestRate();
+
+
 }
