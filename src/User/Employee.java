@@ -23,6 +23,14 @@ public class Employee implements UserInterface {
     public void setName(String name) {
         this.name = name;
     }
+    
+    /**
+    * Sets the password for the user.
+    * @param password
+    */
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     /**
      * Returns the name of the current user
