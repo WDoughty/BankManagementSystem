@@ -16,6 +16,11 @@ Iteration 1
  Create Client 
  Check Balance
  
+ Need harder use cases. 
+ Hr-> Time clock system for employees, Paycheck 
+ Interest on accounts
+ Selling postage in ATM etc.
+ 
 Iteration 2-3
  Calculate Interest
  Print Receipt 
