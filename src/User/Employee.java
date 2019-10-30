@@ -28,6 +28,7 @@ public class Employee implements UserInterface {
     * Sets the password for the user.
     * @param password
     */
+    @Override
     public void setPassword(String password) {
         this.password = password;
     }
@@ -36,6 +37,7 @@ public class Employee implements UserInterface {
     * Returns the password of the current user.
     * @return password
     */
+    @Override
     public void getPassword() {
         return password;
     }
