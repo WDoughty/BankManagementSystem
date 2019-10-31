@@ -70,6 +70,12 @@ public class Database implements DatabaseInterface {
 	}
 
 	@Override
+	public Employee getEmployee(String eid) {
+		Employee employee = new Employee();
+		return employee;
+	}
+
+	@Override
 	public Account getAccount(Client client, String aid) {
 		//TODO
 		Account account = new Account(client, aid);

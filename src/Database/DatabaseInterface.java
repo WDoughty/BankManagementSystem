@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.time.LocalDateTime;
 import Account.Account;
 import User.Client;
+import User.Employee;
 
 public interface DatabaseInterface {
 
@@ -16,6 +17,8 @@ public interface DatabaseInterface {
     boolean putAccount(Account a);
 
     boolean getUser(String uid);
+
+    Employee getEmployee(String eid);
 
     Account getAccount(Client client, String aid);
 
