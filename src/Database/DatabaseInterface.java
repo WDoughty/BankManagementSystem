@@ -17,7 +17,7 @@ public interface DatabaseInterface {
 
     boolean getUser(String uid);
 
-    boolean getAccount(String aid);
+    Account getAccount(Client client, String aid);
 
     Connection getConnection();
 }

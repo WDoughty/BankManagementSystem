@@ -70,9 +70,10 @@ public class Database implements DatabaseInterface {
 	}
 
 	@Override
-	public Account getAccount(String aid) {
+	public Account getAccount(Client client, String aid) {
 		//TODO
-		return true;
+		Account account = new Account(client, aid);
+		return account;
 	}
 
 	@Override
