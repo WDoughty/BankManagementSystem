@@ -70,7 +70,7 @@ public class Database implements DatabaseInterface {
 	}
 
 	@Override
-	public boolean getAccount(String aid) {
+	public Account getAccount(String aid) {
 		//TODO
 		return true;
 	}
