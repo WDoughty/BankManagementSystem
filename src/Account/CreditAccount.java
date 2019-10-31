@@ -30,4 +30,8 @@ public class CreditAccount extends Account {
 
 
     //Calc interest
+    public double calculateInterest(double periods) {
+        double interest = this.getBalance() * this.getInterestRate() * periods;
+        return interest;
+    }
 }
