@@ -37,7 +37,7 @@ public class Database implements DatabaseInterface {
 	}
 
 	@Override
-	public void addShift(String eid, LocalDateTime start, LocalDateTime finish) {
+	public boolean addShift(String eid, LocalDateTime start, LocalDateTime finish) {
 		DateTimeFormatter sqlFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
 		String formattedStart = start.format(sqlFormat);
@@ -47,14 +47,17 @@ public class Database implements DatabaseInterface {
 			connection = this.getConnection();
 			Statement s = connection.createStatement();
 			s.executeUpdate("insert into schedule values ('" + eid + "'," + formattedStart + "," + formattedFinish + ")");
+			connection.close();
+			return true;
 		} catch (SQLException e) {
-
+			return false;
 		}
 	}
 
 	@Override
-	public void getShifts(String eid) {
+	public boolean getShifts(String eid) {
 		//TODO
+		return true;
 	}
 
 	@Override

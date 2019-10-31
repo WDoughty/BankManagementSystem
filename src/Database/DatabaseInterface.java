@@ -10,9 +10,9 @@ public interface DatabaseInterface {
 
     boolean putClient(Client c);
 
-    void addShift(String eid, LocalDateTime start, LocalDateTime finish);
+    boolean addShift(String eid, LocalDateTime start, LocalDateTime finish);
 
-    void getShifts(String eid);
+    boolean getShifts(String eid);
 
     boolean putAccount(Account a);
 
