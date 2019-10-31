@@ -68,26 +68,49 @@ public class Employee implements UserInterface {
         return employeeNumber;
     }
 
+    /**
+     * Gets the hours worked for the employee
+     * @return double
+     */
     public double getHoursWorked(){
         return hoursWorked;
     }
 
+    /**
+     * Adds the amount of hours worked to the total
+     * @param hoursWorked
+     */
     public void setHoursWorked(double hoursWorked){
         this.hoursWorked += hoursWorked;
     }
 
+    /**
+     * Sets the amount of hours worked to 0
+     */
     public void resetHoursWorked(){
         hoursWorked = 0;
     }
 
+    /**
+     * Returns the hourly pay of the employee
+     * @return double
+     */
     public double getHourlyPay(){
         return hourlyPay;
     }
 
+    /**
+     * Sets the hourly pay of the employee
+     * @param hourlyPay
+     */
     public void setHourlyPay(double hourlyPay){
         this.hourlyPay = hourlyPay;
     }
 
+    /**
+     * Returns the employees time card
+     * @return EmployeeTimeCardInterface
+     */
     public EmployeeTimeCardInterface getTimeCard(){
         return timeCard;
     }

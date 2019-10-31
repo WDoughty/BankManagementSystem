@@ -27,8 +27,16 @@ public interface AccountControllerInterface {
      */
     boolean isSufficientFunds(double amount);
 
+    /**
+     * Sets the interest rate for the account
+     * @param interestRate
+     */
     void setInterestRate(double interestRate);
 
+    /**
+     * Returns the interest account for the account
+     * @return double
+     */
     double getInterestRate();
 
 

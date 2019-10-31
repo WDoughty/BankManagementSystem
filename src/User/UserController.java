@@ -52,12 +52,20 @@ public class UserController {
         }
     }
 
+    /**
+     * Sets the employee number for the current model
+     * @param employeeNumber
+     */
     public void setEmployeeNumber(String employeeNumber){
         if(model instanceof Employee){
             ((Employee) model).setEmployeeNumber(employeeNumber);
         }
     }
 
+    /**
+     * Gets the employee number of the current model
+     * @return String
+     */
     public String getEmployeeNumber(){
         if(model instanceof Employee){
             return ((Employee) model).getEmployeeNumber();
@@ -67,6 +75,11 @@ public class UserController {
         }
     }
 
+
+    /**
+     * Gets the hourly pay for the current model
+     * @return double
+     */
     public double getEmployeeHourlyPay(){
         if(model instanceof Employee){
             return ((Employee)model).getHourlyPay();
@@ -76,6 +89,10 @@ public class UserController {
         }
     }
 
+    /**
+     * Gets the hours worked for the current model
+     * @return double
+     */
     public double getEmployeeHoursWorked(){
         if(model instanceof Employee){
             return ((Employee) model).getHoursWorked();
@@ -85,18 +102,30 @@ public class UserController {
         }
     }
 
+    /**
+     * Sets the amount of hours worked for the current model
+     * @param hoursWorked
+     */
     public void setHoursWorked(double hoursWorked){
         if(model instanceof Employee){
             ((Employee) model).setHoursWorked(hoursWorked);
         }
     }
 
+    /**
+     * Sets the hourly pay for the current model
+     * @param hourlyPay
+     */
     public void setHourlyPay(double hourlyPay){
         if(model instanceof Employee){
             ((Employee) model).setHourlyPay(hourlyPay);
         }
     }
 
+    /**
+     * Returns the current models EmployeeTimeCardInterface
+     * @return EmployeeTimeCardInterface
+     */
     public EmployeeTimeCardInterface getTimeCard(){
         if(model instanceof  Employee){
             return ((Employee) model).getTimeCard();
@@ -106,6 +135,9 @@ public class UserController {
         }
     }
 
+    /**
+     * Sets the amount of hours worked for the current model to 0
+     */
     public void resetHoursWorked(){
         if(model instanceof Employee){
             ((Employee) model).resetHoursWorked();

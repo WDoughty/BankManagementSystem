@@ -15,8 +15,16 @@ public interface UserInterface {
      */
     String getName();
 
+    /**
+     * Sets the password for the current user
+     * @param password
+     */
     void setPassword(String password);
 
+    /**
+     * Returns the password of the current user
+     * @return String
+     */
     String getPassword();
 
 }

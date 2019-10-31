@@ -14,15 +14,28 @@ public class LoanAccount extends Account {
         super(client, accountNumber);
     }
 
+    /**
+     * Sets the interest rate for the account
+     * @param interestRate
+     */
     public void setInterestRate(double interestRate){
         this.interestRate = interestRate;
     }
 
+    /**
+     * Returns the interest rate for the account
+     * @return double
+     */
     public double getInterestRate(){
         return interestRate;
     }
 
-    //Calc interest
+    /**
+     * Calculates the accrued interest of the account by the account over
+     * the amount of periods and returns the total balance of the account
+     * @param periods
+     * @return double
+     */
     public double calculateInterest(double periods) {
         double interest = this.getBalance() * this.getInterestRate() * periods;
         return interest;

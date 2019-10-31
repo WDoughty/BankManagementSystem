@@ -6,7 +6,6 @@ public class CheckingAccount extends Account {
 
     /**
      * Creates new account for client with account number
-     *
      * @param client        New user client
      * @param accountNumber Account number assigned to this account
      */

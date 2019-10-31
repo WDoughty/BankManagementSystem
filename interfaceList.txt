@@ -43,3 +43,14 @@ public interface PaycheckInterface{
 	void printPayStub();
 	void paycheckUpdate();
 }
+
+public interface DatabaseInterface{
+	boolean putClient(Client C);
+	boolean addShift(String eid, LocalDateTime start, LocalDateTime finish);
+	boolean getShifts(String eid);
+	boolean putAccount(Account a);
+   	boolean getUser(String uid);
+	Employee getEmployee(String eid);
+	Account getAccount(Client client, String aid);
+	Connection getConnection();
+}

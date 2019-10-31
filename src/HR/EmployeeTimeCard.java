@@ -11,6 +11,9 @@ public class EmployeeTimeCard implements EmployeeTimeCardInterface {
     private int stopTime;
 
 
+    /**
+     * Clocks the employee in at the current time
+     */
     @Override
     public void clockIn() {
         Calendar calendar = Calendar.getInstance();
@@ -21,6 +24,10 @@ public class EmployeeTimeCard implements EmployeeTimeCardInterface {
 
     }
 
+
+    /**
+     * Clocks the employee out at the current time
+     */
     @Override
     public void clockOut() {
         Calendar calendar = Calendar.getInstance();
@@ -29,6 +36,11 @@ public class EmployeeTimeCard implements EmployeeTimeCardInterface {
         minutes = minutes + hours*60;
         stopTime = minutes;
     }
+
+    /**
+     * Returns the hours worked
+     * @return double
+     */
     @Override
     public double getWorkedHours() {
         double hours = ((stopTime-startTime) / 60.00);

@@ -49,6 +49,10 @@ public class AccountController implements AccountControllerInterface {
         return model.isSufficientFunds(amount);
     }
 
+    /**
+     * Sets the interest rate for model account if it is a Credit or Loan account
+     * @param interestRate
+     */
     @Override
     public void setInterestRate(double interestRate) {
         if(model instanceof CreditAccount){
@@ -62,6 +66,11 @@ public class AccountController implements AccountControllerInterface {
         }
 
     }
+
+    /**
+     * Returns the interest associated with the model account if it is a Credit or Loan account, or 0 if it is not.
+     * @return double
+     */
     @Override
     public double getInterestRate() {
         if(model instanceof CreditAccount){
