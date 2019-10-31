@@ -1,0 +1,45 @@
+Interface List
+
+public interface UserInterface{
+	void setName(String name);
+	String getName();
+	void setPassword(String password);
+	String getPassword();
+}
+
+public interface AccountControllerInterface{
+	double getBalance();
+	void deposit(double amount);
+	void withdraw(double amount);
+	boolean isSufficientFunds(double amount);
+	void setInterestRate(double interestRate);
+	double getInterestRate();
+}
+
+public interface AccountInterface{
+	void deposit(double amount);
+	void withdraw(double amount);
+	boolean isSufficientFunds(double amount);
+	double getBalance();
+	
+}
+ 
+public interface EmployeeSchedulingInterface{
+
+}
+
+public interface EmployeeTimeCardInterface{
+	void clockIn();
+	void clockOut();
+	double getHoursWorked();
+}
+
+public interface PaycheckInterface{
+	void getEmployeeNumber();
+	void getEmployeeName();
+	void getHoursWorked();
+	void getHourlyPay();
+	double calculatePay(double hoursworked, double hourlyPay);
+	void printPayStub();
+	void paycheckUpdate();
+}

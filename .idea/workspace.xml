@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="54bbd83e-917a-4056-9e78-0737e140ca84" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/User/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User/UserInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/View/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/View.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/UserInterfaceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/UserInterfaceTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +69,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.View">
+  <component name="RunManager" selected="JUnit.UserInterfaceTest">
     <configuration name="DBtest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Tests.DBtest" />
       <module name="BankManagementSystem" />
@@ -129,8 +129,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.View" />
         <item itemvalue="JUnit.UserInterfaceTest" />
+        <item itemvalue="Application.View" />
         <item itemvalue="JUnit.UserInterfaceTest.checkEmployee" />
         <item itemvalue="Application.DBtest" />
       </list>
@@ -155,6 +155,7 @@
       <workItem from="1572390224979" duration="622000" />
       <workItem from="1572394838408" duration="3826000" />
       <workItem from="1572447529726" duration="2309000" />
+      <workItem from="1572529341522" duration="3209000" />
     </task>
     <servers />
   </component>

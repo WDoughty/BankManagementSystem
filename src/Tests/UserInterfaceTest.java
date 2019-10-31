@@ -11,6 +11,7 @@ import User.Employee;
 import User.UserController;
 import User.UserInterface;
 import org.junit.Test;
+import Account.*;
 
 import static org.junit.Assert.*;
 
@@ -46,6 +47,12 @@ public class UserInterfaceTest {
         AccountControllerInterface controller = new AccountController(account);
         controller.deposit(10);
         assertEquals(10.00,controller.getBalance(),0);
+
+        UserInterface user2 = new Client();
+        AccountInterface acc = new CreditAccount((Client)user2,accountNumber);
+        AccountControllerInterface con = new AccountController(acc);
+        con.setInterestRate(6.75);
+        System.out.println(con.getInterestRate());
 
     }
 
