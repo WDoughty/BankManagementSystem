@@ -2,7 +2,8 @@ package User;
 
 public class Administrator implements UserInterface {
     private String name;
-
+    private String password;
+    
     @Override
     public void setName(String name) {
         this.name = name;
@@ -12,5 +13,15 @@ public class Administrator implements UserInterface {
     public String getName() {
         return name;
     }
+
+	@Override
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String getPassword() {
+		return password;
+	}
 
 }

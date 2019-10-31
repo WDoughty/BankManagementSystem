@@ -3,6 +3,7 @@ package User;
 public class Client implements UserInterface {
     private String accountNumber;
     private String name;
+    private String password;
 
     /**
      * Sets the name of the current user
@@ -32,10 +33,30 @@ public class Client implements UserInterface {
 
     /**
      * Returns the account number of the Client
-     * @return
+     * @return accountNumber
      */
     public String getAccountNumber(){
         return accountNumber;
     }
+
+    /**
+     * Sets the new password for the Client
+     * @param password
+     */
+	@Override
+	public void setPassword(String password) {
+		this.password = password;
+		
+	}
+	
+	/**
+	 *  Returns the password for the Client
+	 *  @return password
+	 */
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return password;
+	}
 }
 

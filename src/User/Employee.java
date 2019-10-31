@@ -35,10 +35,11 @@ public class Employee implements UserInterface {
     
     /** 
     * Returns the password of the current user.
+     * @return 
     * @return password
     */
     @Override
-    public void getPassword() {
+    public String getPassword() {
         return password;
     }
 

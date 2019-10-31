@@ -4,11 +4,14 @@ import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import Account.Account;
+import User.UserInterface;
+
 public interface DatabaseInterface {
-  private connection = null;
+  public Connection connection = null;
   
-  public boolean putUser(User u) {
-    //todo
+  public boolean putUser(UserInterface u) {
+    //TODO
     try {
       connection = this.getConnection();
       Statement s = connection.getStatement();
@@ -17,18 +20,18 @@ public interface DatabaseInterface {
   }
   
   public boolean putAccount(Account a) {
-    //todo
+    //TODO
   }
   
   public boolean getUser(String uid) {
-    //todo
+    //TODO
   }
   
   public boolean getAccount(String aid) {
-    //todo
+    //TODO
   }
   
-  private Connection getConnection() {
+  public Connection getConnection() {
     try {
       connection = DriverManager.getConnection ("jdbc:mysql://localhost/BankManagementSystem", "root", "password");
     }
@@ -39,4 +42,5 @@ public interface DatabaseInterface {
       connection = null;
     }
     return connection;
+  }
 }
