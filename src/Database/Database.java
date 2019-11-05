@@ -237,6 +237,64 @@ public class Database implements DatabaseInterface {
 	}
 
 	@Override
+    public CheckingAccount getCheckingAccount(String accountNumber, Client client) {
+	    CheckingAccount account = new CheckingAccount(client, accountNumber);
+
+        try {
+            connection = this.getConnection();
+            Statement s = connection.createStatement();
+            ResultSet r = s.executeQuery("select * from checking_accounts where chk_number = '" + accountNumber + "';");
+            r.next();
+            account.deposit(r.getDouble("chk_balance"));
+            connection.close();
+        } catch (SQLException sqle) {
+
+        }
+
+	    return account;
+    }
+
+    @Override
+    public CreditAccount getCreditAccount(String accountNumber, Client client) {
+        CreditAccount account = new CreditAccount(client, accountNumber);
+
+        try {
+            connection = this.getConnection();
+            Statement s = connection.createStatement();
+            ResultSet r = s.executeQuery("select * from credit_accounts where crd_number = '" + accountNumber + "';");
+            r.next();
+            account.deposit(r.getDouble("crd_balance"));
+            account.setCreditLine(r.getDouble("crd_line"));
+            account.setInterestRate(r.getDouble("crd_interst_rate"));
+            connection.close();
+        } catch (SQLException sqle) {
+
+        }
+
+        return account;
+    }
+
+    @Override
+    public LoanAccount getLoanAccount(String accountNumber, Client client) {
+        LoanAccount account = new LoanAccount(client, accountNumber);
+
+        try {
+            connection = this.getConnection();
+            Statement s = connection.createStatement();
+            ResultSet r = s.executeQuery("select * from loan_accounts where loan_number = '" + accountNumber + "';");
+            r.next();
+            account.deposit(r.getDouble("loan_balance"));
+            account.setInterestRate(r.getDouble("loan_interest_rate"));
+            connection.close();
+        } catch (SQLException sqle) {
+
+        }
+
+        return account;
+    }
+
+
+    @Override
 	public Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");

@@ -41,5 +41,11 @@ public interface DatabaseInterface {
 
     Account getAccount(Client client, String aid);
 
+    CheckingAccount getCheckingAccount(String accountNumber, Client client);
+
+    CreditAccount getCreditAccount(String accountNumber, Client client);
+
+    LoanAccount getLoanAccount(String accountNumber, Client client);
+
     Connection getConnection();
 }

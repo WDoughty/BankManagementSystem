@@ -60,9 +60,25 @@ public class View {
 //        LocalDateTime finish = LocalDateTime.of(2019, Month.NOVEMBER, 5, 16, 0, 0);
 //        db.addShift("212121", "222222", start, finish);
 
-        Shift s1 = new Shift();
-        s1 = db.getShifts("000001");
-        System.out.println(s1.getFinish());
+//        Shift s1 = new Shift();
+//        s1 = db.getShifts("000001");
+//        System.out.println(s1.getFinish());
 
+//        Client guy4 = new Client();
+//        guy4.setAccountNumber("333333");
+//        guy4.setName("Joanne");
+//        CheckingAccount account = db.getCheckingAccount("121212", guy4);
+
+//        Client guy5 = new Client();
+//        guy5.setAccountNumber("333333");
+//        guy5.setName("Joanne");
+//        CreditAccount account = db.getCreditAccount("131313", guy5);
+
+        Client guy6 = new Client();
+        guy6.setAccountNumber("333333");
+        guy6.setName("Joanne");
+        LoanAccount account = db.getLoanAccount("141414", guy6);
+
+        System.out.println(account.getAccountNumber());
     }
 }
