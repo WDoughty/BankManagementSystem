@@ -143,4 +143,9 @@ public class UserController {
             ((Employee) model).resetHoursWorked();
         }
     }
+
+    public void setPassword(String password){
+        model.setPassword(password);
+    }
+
 }

@@ -21,7 +21,7 @@ public class Database implements DatabaseInterface {
     private Set<Employee> employeeSet;
     private Set<Client> clientSet;
 
-	public Connection connection = null;
+	public Connection connection;
 
 	@Override
 	public boolean putClient(Client c) {

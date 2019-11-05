@@ -50,7 +50,7 @@ public class Account implements AccountInterface {
      */
     @Override
     public boolean isSufficientFunds(double amount) {
-        if(balance-amount>0){
+        if(balance-amount>=0){
             return true;
         }
         else return false;

@@ -36,7 +36,11 @@ public class AccountController implements AccountControllerInterface {
      */
     @Override
     public void withdraw(double amount) {
-        model.withdraw(amount);
+        if(model.isSufficientFunds(amount)) {
+            model.withdraw(amount);
+        }
+        else System.out.println("Insufficient Funds");
+
     }
 
     /**
