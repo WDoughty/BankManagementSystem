@@ -25,6 +25,10 @@ Iteration 2-3
  Print Receipt 
  Transfer Funds
  
+ # INSTALL MYSQL STUFF
+ Download the mysql installer from here https://dev.mysql.com/downloads/installer/. Run it and install mysql server and mysql workbench. Set user name to 'root' and password to 'Password'.
+ Download the mysql connector from here https://dev.mysql.com/downloads/connector/j/. Select platform independent. Extract the file. Add the Jar to the external libraries in your ide.
+ 
 
  
   
