@@ -1,5 +1,6 @@
 package View;
 
+import ATM.ATM;
 import Account.CheckingAccount;
 import Account.CreditAccount;
 import Account.LoanAccount;
@@ -33,8 +34,8 @@ public class View {
 ////        guy2 = db.getAdministrator("444444");
 ////        System.out.println(guy2.getPassword());
 
-        Client guy3 = new Client();
-        guy3.setAccountNumber("333333");
+//        Client guy3 = new Client();
+//        guy3.setAccountNumber("333333");
 
 //        CheckingAccount acc1 = new CheckingAccount(guy3, "121212");
 //        acc1.deposit(500);
@@ -74,11 +75,28 @@ public class View {
 //        guy5.setName("Joanne");
 //        CreditAccount account = db.getCreditAccount("131313", guy5);
 
-        Client guy6 = new Client();
-        guy6.setAccountNumber("333333");
-        guy6.setName("Joanne");
-        LoanAccount account = db.getLoanAccount("141414", guy6);
+//        Client guy6 = new Client();
+//        guy6.setAccountNumber("333333");
+//        guy6.setName("Joanne");
+//        LoanAccount account = db.getLoanAccount("141414", guy6);
 
-        System.out.println(account.getAccountNumber());
+//        Client guy7 = db.getClient("333333");
+//
+//        ATM atm = new ATM();
+//        atm.userLogin(guy7.getAccountNumber(), guy7.getPassword(), "121212");
+//        atm.buyStamps(20);
+//        CheckingAccount account = db.getCheckingAccount("121212", guy7);
+
+        Client guy8 = new Client();
+        guy8.setName("Jasmine");
+        guy8.setAccountNumber("100000");
+        guy8.setPassword("pass6");
+//        db.putClient(guy8);
+
+        CheckingAccount  account = new CheckingAccount(guy8, "151515");
+        account.deposit(1000);
+        db.putCheckingAccount(account, "100000");
+
+//        System.out.println(account.getBalance());
     }
 }

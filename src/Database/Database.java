@@ -100,7 +100,7 @@ public class Database implements DatabaseInterface {
 			connection = this.getConnection();
 			Statement s = connection.createStatement();
 			if (a.getAccountNumber() != null) {
-				s.executeUpdate("insert into checking_accounts  values ('" + a.getAccountNumber() + "','" + cid + "'," + a.getBalance() + ");");
+				s.executeUpdate("replace into checking_accounts  values ('" + a.getAccountNumber() + "','" + cid + "'," + a.getBalance() + ");");
 			}
 			connection.close();
 			return true;
