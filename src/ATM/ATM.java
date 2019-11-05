@@ -11,6 +11,7 @@ public class ATM
 	private Client customer;
 	private CheckingAccount cusAcct;
 	private String acctNumber;
+	private int stamps = 4000;
 	
 	public boolean userLogin(String id , String password, String aid)
 	{
@@ -29,16 +30,25 @@ public class ATM
 	{
 		if(login)
 		{
-			double total = numStamps * .55;
-			cusAcct = db.getCheckingAccount(acctNumber, customer);
-		
-			if (cusAcct.getBalance() >= total)
+			if (numStamps <= stamps)
 			{
-				cusAcct.withdraw(total);
-				db.putCheckingAccount(cusAcct, customer.getAccountNumber());
-				return true;
-			}
+				double total = numStamps * .55;
+				cusAcct = db.getCheckingAccount(acctNumber, customer);
 		
+				if (cusAcct.getBalance() >= total)
+				{
+					cusAcct.withdraw(total);
+					stamps -= numStamps;
+					db.putCheckingAccount(cusAcct, customer.getAccountNumber());
+					return true;
+				}
+		
+				else
+				{
+					return false;
+				}
+			}
+			
 			else
 			{
 				return false;
