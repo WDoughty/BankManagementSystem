@@ -1,6 +1,5 @@
 package ATM;
 
-import Account.Account;
 import Database.Database;
 import User.Client;
 import Account.CheckingAccount;
@@ -8,7 +7,7 @@ import Account.CheckingAccount;
 public class ATM
 {
 	private Database db = new Database();
-	private boolean login;
+	private boolean login = false;
 	private Client customer;
 	private CheckingAccount cusAcct;
 	private String acctNumber;
@@ -21,16 +20,29 @@ public class ATM
 		return login;
 	}
 	
+	public void logOut()
+	{
+		login = false;
+	}
+	
 	public boolean buyStamps(int numStamps)
 	{
-		double total = numStamps * .55;
-		cusAcct = db.getCheckingAccount(acctNumber, customer);
-		
-		if (cusAcct.getBalance() >= total)
+		if(login)
 		{
-			cusAcct.withdraw(total);
-			db.putCheckingAccount(cusAcct, customer.getAccountNumber());
-			return true;
+			double total = numStamps * .55;
+			cusAcct = db.getCheckingAccount(acctNumber, customer);
+		
+			if (cusAcct.getBalance() >= total)
+			{
+				cusAcct.withdraw(total);
+				db.putCheckingAccount(cusAcct, customer.getAccountNumber());
+				return true;
+			}
+		
+			else
+			{
+				return false;
+			}
 		}
 		
 		else
