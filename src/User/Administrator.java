@@ -3,6 +3,7 @@ package User;
 public class Administrator implements UserInterface {
     private String name;
     private String password;
+    private String number;
 
     /**
      * Sets the name of the Administrator
@@ -39,5 +40,22 @@ public class Administrator implements UserInterface {
 	public String getPassword() {
 		return password;
 	}
+
+    /**
+     * Sets the User Number of the Administrator
+     * @param adminNumber
+     */
+    public void setAdminNumber(String adminNumber) {
+        this.number = adminNumber;
+    }
+
+    /**
+     * Returns the User Number of the Adminstrator
+     * @return String
+     */
+    public String getAdminNumber() {
+        return number;
+    }
+
 
 }

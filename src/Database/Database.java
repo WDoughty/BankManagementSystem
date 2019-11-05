@@ -1,17 +1,21 @@
 package Database;
 
+import Account.Account;
+import Account.CreditAccount;
+import Account.CheckingAccount;
+import Account.LoanAccount;
+import HR.Shift;
+import User.Administrator;
 import User.Client;
 import User.Employee;
 
-import java.sql.Connection;
-import java.sql.Statement;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Set;
 
-import Account.Account;
+import javax.swing.plaf.nimbus.State;
 
 public class Database implements DatabaseInterface {
     private Set<Employee> employeeSet;
@@ -26,7 +30,7 @@ public class Database implements DatabaseInterface {
 			connection = this.getConnection();
 			Statement s = connection.createStatement();
 			if (c.getAccountNumber() != null) {
-				s.executeUpdate("insert into users values ('" + c.getName() + "','" + c.getAccountNumber() + "')");
+				s.executeUpdate("insert into clients values ('" + c.getAccountNumber() + "','" + c.getName() + "','" + c.getPassword() + "')");
 			}
 
 			connection.close();
@@ -37,16 +41,15 @@ public class Database implements DatabaseInterface {
 	}
 
 	@Override
-	public boolean addShift(String eid, LocalDateTime start, LocalDateTime finish) {
-		DateTimeFormatter sqlFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-		String formattedStart = start.format(sqlFormat);
-		String formattedFinish = finish.format(sqlFormat);
-
+	public boolean putAdministrator(Administrator a) {
+		//TODO
 		try {
 			connection = this.getConnection();
 			Statement s = connection.createStatement();
-			s.executeUpdate("insert into schedule values ('" + eid + "'," + formattedStart + "," + formattedFinish + ")");
+			if (a.getAdminNumber() != null) {
+				s.executeUpdate("insert into administrators values ('" + a.getAdminNumber() + "','" + a.getName() + "','" + a.getPassword() + "')");
+			}
+
 			connection.close();
 			return true;
 		} catch (SQLException e) {
@@ -55,15 +58,108 @@ public class Database implements DatabaseInterface {
 	}
 
 	@Override
-	public boolean getShifts(String eid) {
-		//TODO
-		return true;
+	public boolean putEmployee(Employee e) {
+		try {
+			connection = this.getConnection();
+			Statement s = connection.createStatement();
+			if (e.getEmployeeNumber() != null) {
+				s.executeUpdate("insert into employees (emp_number, emp_name, emp_password, emp_pay) values ('" + e.getEmployeeNumber() + "','" + e.getName() + "','" + e.getPassword() + "'," + e.getHourlyPay() +  ")");
+			}
+			connection.close();
+			return true;
+		} catch (SQLException sqle) {
+			return false;
+		}
 	}
 
 	@Override
-	public boolean putAccount(Account a) {
+	public boolean addShift(String sid, String eid, LocalDateTime start, LocalDateTime finish) {
+		DateTimeFormatter sqlFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+		String formattedStart = start.format(sqlFormat);
+		String formattedFinish = finish.format(sqlFormat);
+
+		System.out.println(formattedStart);
+		System.out.println(formattedFinish);
+
+		try {
+			connection = this.getConnection();
+			Statement s = connection.createStatement();
+			s.executeUpdate("insert into shifts values ('" + sid + "','" + eid + "','" + formattedStart + "','" + formattedFinish + "');");
+			connection.close();
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean putCheckingAccount(CheckingAccount a, String cid) {
 		//TODO
-		return true;
+		try {
+			connection = this.getConnection();
+			Statement s = connection.createStatement();
+			if (a.getAccountNumber() != null) {
+				s.executeUpdate("insert into checking_accounts  values ('" + a.getAccountNumber() + "','" + cid + "'," + a.getBalance() + ");");
+			}
+			connection.close();
+			return true;
+		} catch (SQLException sqle) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean putCreditAccount(CreditAccount a, String cid) {
+		//TODO
+		try {
+			connection = this.getConnection();
+			Statement s = connection.createStatement();
+			if (a.getAccountNumber() != null) {
+				s.executeUpdate("insert into credit_accounts  values ('" + a.getAccountNumber() + "','" + cid + "'," + a.getBalance() + "," + a.getCreditLine() + "," + a.getInterestRate() + ");");
+			}
+			connection.close();
+			return true;
+		} catch (SQLException sqle) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean putLoanAccount(LoanAccount a, String cid) {
+		//TODO
+		try {
+			connection = this.getConnection();
+			Statement s = connection.createStatement();
+			if (a.getAccountNumber() != null) {
+				s.executeUpdate("insert into loan_accounts  values ('" + a.getAccountNumber() + "','" + cid + "'," + a.getBalance() + "," + a.getInterestRate() + ");");
+			}
+			connection.close();
+			return true;
+		} catch (SQLException sqle) {
+			return false;
+		}
+	}
+
+
+	@Override
+	public Shift getShifts(String sid) {
+		//TODO
+		Shift shift = new Shift();
+		try {
+			connection = this.getConnection();
+			Statement s = connection.createStatement();
+			ResultSet r = s.executeQuery("select * from shifts where shift_id = '" + sid + "';");
+			r.next();
+			shift.setShiftID(r.getString("shift_id"));
+			shift.setEmployeeNumber(r.getString("emp_number"));
+			shift.setStart(r.getString("start_time"));
+			shift.setFinish(r.getString("end_time"));
+			connection.close();
+			return shift;
+		} catch (SQLException sqle) {
+			return shift;
+		}
 	}
 
 	@Override
@@ -75,7 +171,62 @@ public class Database implements DatabaseInterface {
 	@Override
 	public Employee getEmployee(String eid) {
 		Employee employee = new Employee();
+
+		try {
+			connection = this.getConnection();
+			Statement s = connection.createStatement();
+			ResultSet r = s.executeQuery("select * from employees where emp_number = '" + eid + "';");
+			r.next();
+			employee.setEmployeeNumber(r.getString("emp_number"));
+			employee.setName(r.getString("emp_name"));
+			employee.setPassword(r.getString("emp_password"));
+			employee.setHourlyPay(r.getDouble("emp_pay"));
+			connection.close();
+		} catch (SQLException sqle) {
+
+		}
+
 		return employee;
+	}
+
+	@Override
+	public Client getClient(String cid) {
+		Client client = new Client();
+
+		try {
+			connection = this.getConnection();
+			Statement s = connection.createStatement();
+			ResultSet r = s.executeQuery("select * from clients where client_number = '" + cid + "';");
+			r.next();
+			client.setAccountNumber(r.getString("client_number"));
+			client.setName(r.getString("client_name"));
+			client.setPassword(r.getString("client_password"));
+			connection.close();
+		} catch (SQLException sqle) {
+
+		}
+
+		return client;
+	}
+
+	@Override
+	public Administrator getAdministrator(String aid) {
+		Administrator admin = new Administrator();
+
+		try {
+			connection = this.getConnection();
+			Statement s = connection.createStatement();
+			ResultSet r = s.executeQuery("select * from administrators where admin_number = '" + aid + "';");
+			r.next();
+			admin.setAdminNumber(r.getString("admin_number"));
+			admin.setName(r.getString("admin_name"));
+			admin.setPassword(r.getString("admin_password"));
+			connection.close();
+		} catch (SQLException sqle) {
+
+		}
+
+		return admin;
 	}
 
 	@Override
@@ -88,8 +239,14 @@ public class Database implements DatabaseInterface {
 	@Override
 	public Connection getConnection() {
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/BankManagementSystem", "root", "password");
-		} catch (SQLException sqle) {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			String url = "jdbc:mysql://localhost:3306/bankmanagement";
+			connection = DriverManager.getConnection(url, "root", "Password");
+			//connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/bankmanagement", "root", "Password");
+		} catch (ClassNotFoundException nfe) {
+			connection = null;
+		}
+		catch (SQLException sqle) {
 			connection = null;
 		}
 		return connection;
