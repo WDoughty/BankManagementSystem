@@ -29,6 +29,10 @@ Iteration 2-3
  Download the mysql installer from here https://dev.mysql.com/downloads/installer/. Run it and install mysql server and mysql workbench. Set user name to 'root' and password to 'Password'.
  Download the mysql connector from here https://dev.mysql.com/downloads/connector/j/. Select platform independent. Extract the file. Add the Jar to the external libraries in your ide.
  
+ # SQL Tables
+ Tables created with DECIMAL types are set as DECIMAL(10,0). Change those to DECIMAL(13,2). If you already created the database you can
+ Change it by running the command on the mysql client: ALTER TABLE name_of_table MODIFY COLUMN name_of_column DECIMAL(13,2);
+ 
 
  
   
