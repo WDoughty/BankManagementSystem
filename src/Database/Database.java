@@ -203,7 +203,8 @@ public class Database implements DatabaseInterface {
 			client.setPassword(r.getString("client_password"));
 			connection.close();
 		} catch (SQLException sqle) {
-
+			System.out.println(sqle.toString());
+			return null;
 		}
 
 		return client;
