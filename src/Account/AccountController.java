@@ -92,5 +92,9 @@ public class AccountController implements AccountControllerInterface {
         //Remove Account number from DB
     }
 
+    public AccountInterface getAccount(){
+        return model;
+    }
+
 
 }

@@ -39,5 +39,5 @@ public interface AccountControllerInterface {
      */
     double getInterestRate();
 
-
+    AccountInterface getAccount();
 }
