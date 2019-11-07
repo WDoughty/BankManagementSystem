@@ -29,8 +29,8 @@ public class Database implements DatabaseInterface {
 		try {
 			connection = this.getConnection();
 			Statement s = connection.createStatement();
-			if (c.getAccountNumber() != null) {
-				s.executeUpdate("insert into clients values ('" + c.getAccountNumber() + "','" + c.getName() + "','" + c.getPassword() + "')");
+			if (c.getClientNumber() != null) {
+				s.executeUpdate("insert into clients values ('" + c.getClientNumber() + "','" + c.getName() + "','" + c.getPassword() + "')");
 			}
 
 			connection.close();
@@ -198,7 +198,7 @@ public class Database implements DatabaseInterface {
 			Statement s = connection.createStatement();
 			ResultSet r = s.executeQuery("select * from clients where client_number = '" + cid + "';");
 			r.next();
-			client.setAccountNumber(r.getString("client_number"));
+			client.setClientNumber(r.getString("client_number"));
 			client.setName(r.getString("client_name"));
 			client.setPassword(r.getString("client_password"));
 			connection.close();

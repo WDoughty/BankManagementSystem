@@ -35,7 +35,7 @@ public class UserController {
      */
     public String getUserAccountNumber() {
         if (model instanceof Client) {
-            return ((Client) model).getAccountNumber();
+            return ((Client) model).getClientNumber();
         }
         else{
             return "IncorrectUserException"; // Need to create Exception class
@@ -48,7 +48,7 @@ public class UserController {
      */
     public void setUserAccountNumber(String accountNumber){
         if(model instanceof Client){
-            ((Client) model).setAccountNumber(accountNumber);
+            ((Client) model).setClientNumber(accountNumber);
         }
     }
 

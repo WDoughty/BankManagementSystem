@@ -1,7 +1,7 @@
 package User;
 
 public class Client implements UserInterface {
-    private String accountNumber;
+    private String clientNumber;
     private String name;
     private String password;
 
@@ -25,18 +25,18 @@ public class Client implements UserInterface {
 
     /**
      * Sets the account number for the Client
-     * @param accountNumber
+     * @param clientNumber
      */
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
+    public void setClientNumber(String clientNumber) {
+        this.clientNumber = clientNumber;
     }
 
     /**
      * Returns the account number of the Client
      * @return accountNumber
      */
-    public String getAccountNumber(){
-        return accountNumber;
+    public String getClientNumber(){
+        return clientNumber;
     }
 
     /**

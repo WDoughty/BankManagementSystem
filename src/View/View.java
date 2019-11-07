@@ -7,6 +7,7 @@ import HR.Paycheck;
 import HR.PaycheckInterface;
 import HR.Shift;
 import User.*;
+import com.sun.xml.internal.ws.client.ClientSchemaValidationTube;
 import com.sun.xml.internal.ws.client.ClientTransportException;
 
 import javax.swing.*;
@@ -22,7 +23,7 @@ import java.util.Scanner;
 
 public class View implements ActionListener{
 
-    private JTextField usernameField, passwordField,depositField,withdrawField;
+    private JTextField usernameField, passwordField,depositField,withdrawField,accountField;
     private JFrame frame;
     private JButton loginButton,depositButton,withdrawButton;
     private AccountControllerInterface accountController;
@@ -36,8 +37,6 @@ public class View implements ActionListener{
     }
 
     public static void main(String args[]) {
-
-
 
 
         EventQueue.invokeLater(new Runnable() {
@@ -66,8 +65,14 @@ public class View implements ActionListener{
         panel1.add(passwordLabel);
         passwordField = new JTextField("password");
         panel1.add(passwordField);
+        Label accountNumber = new Label("Enter account number");
+        accountField = new JTextField("");
+        panel1.add(accountNumber);
+        panel1.add(accountField);
         loginButton = new JButton("Login");
         panel1.add(loginButton);
+
+
         contentPane.add(panel1);
         frame.setVisible(true);
         loginButton.addActionListener(this);
@@ -83,7 +88,8 @@ public class View implements ActionListener{
         if(userInterface != null) {
             userController = new UserController(userInterface);
             System.out.println(userController.getUserName());
-            account = db.getCheckingAccount(username, (Client) userInterface);
+
+            account = db.getCheckingAccount(accountField.getText(), (Client) userInterface);
             accountController = new AccountController(account);
             showClientView();
         }

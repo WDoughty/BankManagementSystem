@@ -39,7 +39,7 @@ public class ATM
 				{
 					cusAcct.withdraw(total);
 					stamps -= numStamps;
-					db.putCheckingAccount(cusAcct, customer.getAccountNumber());
+					db.putCheckingAccount(cusAcct, customer.getClientNumber());
 					return true;
 				}
 		
