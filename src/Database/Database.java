@@ -14,6 +14,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.swing.plaf.nimbus.State;
@@ -244,23 +245,25 @@ public class Database implements DatabaseInterface {
 	}
 
 	@Override
-	public Account getAccount(Client client) {
+	public List<Account> getAccounts(Client client) {
 		//TODO
+		List<Account> accounts =  new ArrayList<Account>();
 		Account account;
 		account = getCheckingAccount(client);
-		if(account == null){
-			account = getCreditAccount(client);
-			if(account == null){
-				account = getLoanAccount(client);
-				if(account == null){
-					return null;
-				}
-			}
+		if(account != null){
+			accounts.add(account);
+		}
+		account = getCreditAccount(client);
+		if(account != null){
+			accounts.add(account);
+		}
+		account = getLoanAccount(client);
+		if(account != null){
+			accounts.add(account);
 		}
 
 
-
-		return account;
+		return accounts;
 	}
 
 	@Override

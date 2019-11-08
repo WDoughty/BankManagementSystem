@@ -3,8 +3,7 @@ package GUI;
 import Account.AccountControllerInterface;
 import Account.AccountInterface;
 import Database.Database;
-import User.UserController;
-import User.UserInterface;
+import User.*;
 import View.View;
 
 import javax.swing.*;
@@ -44,7 +43,16 @@ public class LoginForm implements ActionListener {
         userInterface = db.getUser(usernameTextField.getText());
         if(userInterface != null){
             System.out.println("User: "+ userInterface.getName());
-            new clientForm(userInterface);
+            if(userInterface instanceof Client){
+                //new clientForm(userInterface);
+                new accountsForm(userInterface);
+            }
+            else if(userInterface instanceof Employee){
+                new employeeForm(userInterface);
+            }
+            else if(userInterface instanceof Administrator){
+
+            }
         }
         else{
             System.out.println("No user");

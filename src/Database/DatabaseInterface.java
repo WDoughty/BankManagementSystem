@@ -3,6 +3,7 @@ package Database;
 import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import Account.Account;
 import Account.CheckingAccount;
@@ -40,7 +41,7 @@ public interface DatabaseInterface {
 
     Administrator getAdministrator(String aid);
 
-    Account getAccount(Client client);
+    List<Account> getAccounts(Client client);
 
     CheckingAccount getCheckingAccount( Client client);
 

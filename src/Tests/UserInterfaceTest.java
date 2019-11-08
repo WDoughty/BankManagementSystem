@@ -74,8 +74,6 @@ public class UserInterfaceTest {
         paycheck.paycheckUpdate();
         paycheck.printPayStub();
 
-
-
     }
 
 

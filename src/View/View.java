@@ -26,6 +26,7 @@ public class View{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 500);
         new LoginForm();
+
     }
 
     public static JFrame getFrame(){
@@ -36,6 +37,14 @@ public class View{
     }
 
     public static void main(String args[]) {
+//        Database db = new Database();
+//        Client temp = new Client();
+//        temp.setName("Will Doughty");
+//        temp.setClientNumber("1234");
+//        LoanAccount loanAccount = new LoanAccount(temp,"1000");
+//        CreditAccount creditAccount = new CreditAccount(temp,"1000");
+//        db.putCreditAccount(creditAccount,temp.getClientNumber());
+//        db.putLoanAccount(loanAccount,temp.getClientNumber());
 
 
         EventQueue.invokeLater(new Runnable() {

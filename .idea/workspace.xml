@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="54bbd83e-917a-4056-9e78-0737e140ca84" name="Default Changelist" comment="" />
+    <list default="true" id="54bbd83e-917a-4056-9e78-0737e140ca84" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/DatabaseInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/DatabaseInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/LoginForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/clientForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/clientForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tests/UserInterfaceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/UserInterfaceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/View.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/View.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +180,7 @@
       <workItem from="1573004283196" duration="5968000" />
       <workItem from="1573057285014" duration="5546000" />
       <workItem from="1573162332107" duration="2729000" />
-      <workItem from="1573189797245" duration="7242000" />
+      <workItem from="1573189797245" duration="14056000" />
     </task>
     <servers />
   </component>

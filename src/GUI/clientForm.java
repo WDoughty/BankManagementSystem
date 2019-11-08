@@ -29,15 +29,15 @@ public class clientForm implements ActionListener {
     private JLabel currentBalance;
     private JPanel clientPanel;
 
-    public clientForm(UserInterface userInterface) {
+    public clientForm(UserInterface userInterface, AccountInterface accountInterface) {
+        db = new Database();
+        this.accountInterface = accountInterface;
         frame = View.getFrame();
         frame.getContentPane().setVisible(false);
         frame.getContentPane().repaint();
         frame.getContentPane().removeAll();
         frame.setContentPane(clientPanel);
         userController = new UserController(userInterface);
-        db = new Database();
-        accountInterface = db.getAccount((Client) userInterface);
         accountController = new AccountController(accountInterface);
         withdrawButton.addActionListener(this);
         logoutButton.addActionListener(this);
@@ -72,6 +72,7 @@ public class clientForm implements ActionListener {
             }
             frame.getContentPane().repaint();
         }
+
     }
 
     public boolean verifyInput(String s){
