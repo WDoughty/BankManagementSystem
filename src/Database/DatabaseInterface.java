@@ -12,6 +12,7 @@ import HR.Shift;
 import User.Administrator;
 import User.Client;
 import User.Employee;
+import User.UserInterface;
 
 public interface DatabaseInterface {
 
@@ -31,7 +32,7 @@ public interface DatabaseInterface {
 
     Shift getShifts(String sid);
 
-    boolean getUser(String uid);
+    UserInterface getUser(String uid);
 
     Employee getEmployee(String eid);
 
@@ -39,13 +40,13 @@ public interface DatabaseInterface {
 
     Administrator getAdministrator(String aid);
 
-    Account getAccount(Client client, String aid);
+    Account getAccount(Client client);
 
-    CheckingAccount getCheckingAccount(String accountNumber, Client client);
+    CheckingAccount getCheckingAccount( Client client);
 
-    CreditAccount getCreditAccount(String accountNumber, Client client);
+    CreditAccount getCreditAccount( Client client);
 
-    LoanAccount getLoanAccount(String accountNumber, Client client);
+    LoanAccount getLoanAccount(Client client);
 
     Connection getConnection();
 }

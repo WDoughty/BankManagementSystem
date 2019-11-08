@@ -8,6 +8,7 @@ import HR.Shift;
 import User.Administrator;
 import User.Client;
 import User.Employee;
+import User.UserInterface;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -163,9 +164,21 @@ public class Database implements DatabaseInterface {
 	}
 
 	@Override
-	public boolean getUser(String uid) {
+	public UserInterface getUser(String uid) {
+		UserInterface newUser;
 		//TODO
-		return true;
+		newUser = getAdministrator(uid);
+		if(newUser.getName()== null){
+			newUser = getEmployee(uid);
+			if(newUser.getName()== null){
+				newUser = getClient(uid);
+				if(newUser.getName()== null){
+					return null;
+				}
+			}
+		}
+
+		return newUser;
 	}
 
 	@Override
@@ -224,31 +237,46 @@ public class Database implements DatabaseInterface {
 			admin.setPassword(r.getString("admin_password"));
 			connection.close();
 		} catch (SQLException sqle) {
-
+			System.out.println(sqle.toString());
 		}
 
 		return admin;
 	}
 
 	@Override
-	public Account getAccount(Client client, String aid) {
+	public Account getAccount(Client client) {
 		//TODO
-		Account account = new Account(client, aid);
+		Account account;
+		account = getCheckingAccount(client);
+		if(account == null){
+			account = getCreditAccount(client);
+			if(account == null){
+				account = getLoanAccount(client);
+				if(account == null){
+					return null;
+				}
+			}
+		}
+
+
+
 		return account;
 	}
 
 	@Override
-    public CheckingAccount getCheckingAccount(String accountNumber, Client client) {
-	    CheckingAccount account = new CheckingAccount(client, accountNumber);
+    public CheckingAccount getCheckingAccount(Client client) {
+	    CheckingAccount account;
 
         try {
             connection = this.getConnection();
             Statement s = connection.createStatement();
-            ResultSet r = s.executeQuery("select * from checking_accounts where chk_number = '" + accountNumber + "';");
+            ResultSet r = s.executeQuery("select * from checking_accounts where client_number = '" + client.getClientNumber() + "';");
             r.next();
+            account = new CheckingAccount(client,r.getString("chk_number"));
             account.deposit(r.getDouble("chk_balance"));
             connection.close();
         } catch (SQLException sqle) {
+        	return null;
 
         }
 
@@ -256,39 +284,41 @@ public class Database implements DatabaseInterface {
     }
 
     @Override
-    public CreditAccount getCreditAccount(String accountNumber, Client client) {
-        CreditAccount account = new CreditAccount(client, accountNumber);
+    public CreditAccount getCreditAccount(Client client) {
+        CreditAccount account;
 
         try {
             connection = this.getConnection();
             Statement s = connection.createStatement();
-            ResultSet r = s.executeQuery("select * from credit_accounts where crd_number = '" + accountNumber + "';");
+            ResultSet r = s.executeQuery("select * from credit_accounts where client_number = '" + client.getClientNumber() + "';");
             r.next();
+            account = new CreditAccount(client,r.getString("crd_number"));
             account.deposit(r.getDouble("crd_balance"));
             account.setCreditLine(r.getDouble("crd_line"));
             account.setInterestRate(r.getDouble("crd_interst_rate"));
             connection.close();
         } catch (SQLException sqle) {
-
+			return null;
         }
 
         return account;
     }
 
     @Override
-    public LoanAccount getLoanAccount(String accountNumber, Client client) {
-        LoanAccount account = new LoanAccount(client, accountNumber);
+    public LoanAccount getLoanAccount(Client client) {
+        LoanAccount account;
 
         try {
             connection = this.getConnection();
             Statement s = connection.createStatement();
-            ResultSet r = s.executeQuery("select * from loan_accounts where loan_number = '" + accountNumber + "';");
+            ResultSet r = s.executeQuery("select * from loan_accounts where client_number = '" + client.getClientNumber() + "';");
             r.next();
+            account = new LoanAccount(client,r.getString("loan_number"));
             account.deposit(r.getDouble("loan_balance"));
             account.setInterestRate(r.getDouble("loan_interest_rate"));
             connection.close();
         } catch (SQLException sqle) {
-
+			return null;
         }
 
         return account;

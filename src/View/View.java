@@ -1,30 +1,19 @@
 package View;
 
-import ATM.ATM;
 import Account.*;
 import Database.Database;
-import HR.Paycheck;
-import HR.PaycheckInterface;
-import HR.Shift;
 import User.*;
-import com.sun.xml.internal.ws.client.ClientSchemaValidationTube;
-import com.sun.xml.internal.ws.client.ClientTransportException;
-
+import GUI.*;
 import javax.swing.*;
-import javax.xml.soap.Text;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.util.Scanner;
 
-public class View implements ActionListener{
+
+public class View{
 
     private JTextField usernameField, passwordField,depositField,withdrawField,accountField;
-    private JFrame frame;
+    private static JFrame frame;
     private JButton loginButton,depositButton,withdrawButton;
     private AccountControllerInterface accountController;
     private UserInterface userInterface;
@@ -33,7 +22,17 @@ public class View implements ActionListener{
     private Database db;
 
     public View(){
-        GUI();
+        frame = new JFrame("Bank Management System");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(500, 500);
+        new LoginForm();
+    }
+
+    public static JFrame getFrame(){
+        if(frame == null){
+            frame = new JFrame("Bank Management System");
+        }
+        return frame;
     }
 
     public static void main(String args[]) {
@@ -42,146 +41,11 @@ public class View implements ActionListener{
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                View view = new View();
+                new View();
             }
         });
 
     }
-
-    private void GUI(){
-        frame = new JFrame("Bank Management System");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(500, 500);
-
-        // Create Panels for login procedure
-        JPanel panel1 = new JPanel(new GridLayout(5, 1));
-        Container contentPane = frame.getContentPane();
-        contentPane.setLayout(new FlowLayout());
-        Label userNameLabel = new Label("Enter username");
-        panel1.add(userNameLabel);
-        usernameField = new JTextField("username");
-        panel1.add(usernameField);
-        Label passwordLabel = new Label("Enter password");
-        panel1.add(passwordLabel);
-        passwordField = new JTextField("password");
-        panel1.add(passwordField);
-        Label accountNumber = new Label("Enter account number");
-        accountField = new JTextField("");
-        panel1.add(accountNumber);
-        panel1.add(accountField);
-        loginButton = new JButton("Login");
-        panel1.add(loginButton);
-
-
-        contentPane.add(panel1);
-        frame.setVisible(true);
-        loginButton.addActionListener(this);
-
-
-
-
-    }
-
-    private void loginUser(String username, String password) {
-        db = new Database();
-        userInterface = db.getClient(username);
-        if(userInterface != null) {
-            userController = new UserController(userInterface);
-            System.out.println(userController.getUserName());
-
-            account = db.getCheckingAccount(accountField.getText(), (Client) userInterface);
-            accountController = new AccountController(account);
-            showClientView();
-        }
-        else{
-            Label label = new Label("Incorrect Username or Password");
-            frame.setVisible(false);
-            frame.add(label);
-            frame.repaint();
-            frame.setVisible(true);
-
-        }
-
-    }
-
-    private void showClientView(){
-        frame.setVisible(false);
-        frame.getContentPane().removeAll();
-        Container contentPane = frame.getContentPane();
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout(5,1));
-        JPanel panel = new JPanel(new GridLayout(1,2));
-        JPanel panel2 = new JPanel(new GridLayout(1,2));
-        JPanel panel3 = new JPanel(new GridLayout(1,1));
-
-        Label depositLbl = new Label("Deposit",JLabel.CENTER);
-        depositField = new JTextField();
-        depositButton = new JButton("Deposit");
-        panel.add(depositLbl);
-        panel.add(depositField);
-
-
-
-        Label currentBalance = new Label("Account Balance: $"+ accountController.getBalance());
-
-
-        withdrawButton = new JButton("Withdraw");
-        Label withdrawLbl = new Label("Withdraw",JLabel.CENTER);
-        withdrawField = new JTextField();
-        panel2.add(withdrawLbl);
-        panel2.add(withdrawField);
-        panel3.add(currentBalance);
-        contentPane.add(panel,0);
-
-        frame.add(depositButton,1);
-        contentPane.add(panel2,2);
-        frame.add(withdrawButton,3);
-        contentPane.add(panel3,4);
-        frame.setVisible(true);
-        frame.repaint();
-        depositButton.addActionListener(this);
-        withdrawButton.addActionListener(this);
-
-    }
-    @Override
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == loginButton){
-            String username = usernameField.getText();
-            String password = passwordField.getText();
-            System.out.println(username + " " + password);
-            loginUser(username,password);
-        }
-        else if(e.getSource() == depositButton){
-            if(!depositField.getText().isEmpty() && verifyInput(depositField.getText())){
-                accountController.deposit(Double.parseDouble(depositField.getText()));
-                db.putCheckingAccount((CheckingAccount) accountController.getAccount(), userController.getUserAccountNumber());
-                System.out.println("Deposits: $"+ depositField.getText());
-                System.out.println("$" + accountController.getBalance());
-
-            }
-            showClientView();
-
-        }
-
-        else if(e.getSource() == withdrawButton){
-            if(!withdrawField.getText().isEmpty() && verifyInput(withdrawField.getText())){
-                accountController.withdraw(Double.parseDouble(withdrawField.getText()));
-                db.putCheckingAccount((CheckingAccount) accountController.getAccount(), userController.getUserAccountNumber());
-                System.out.println("Withdraws: $"+withdrawField.getText());
-                System.out.println("$" + accountController.getBalance());
-                showClientView();
-            }
-            showClientView();
-        }
-
-
-    }
-
-    public boolean verifyInput(String s){
-        return Double.parseDouble(s) >0;
-
-    }
-
 
 
 //        Scanner in = new Scanner(System.in);

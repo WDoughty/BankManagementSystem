@@ -33,13 +33,13 @@ public class ATM
 			if (numStamps <= stamps)
 			{
 				double total = numStamps * .55;
-				cusAcct = db.getCheckingAccount(acctNumber, customer);
+				//cusAcct = db.getCheckingAccount(acctNumber, customer);
 		
 				if (cusAcct.getBalance() >= total)
 				{
 					cusAcct.withdraw(total);
 					stamps -= numStamps;
-					db.putCheckingAccount(cusAcct, customer.getClientNumber());
+					//db.putCheckingAccount(cusAcct, customer.getClientNumber());
 					return true;
 				}
 		
