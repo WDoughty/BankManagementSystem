@@ -4,6 +4,7 @@ import Account.Account;
 import Account.CreditAccount;
 import Account.CheckingAccount;
 import Account.LoanAccount;
+import GUI.LoginForm;
 import HR.Shift;
 import User.Administrator;
 import User.Client;
