@@ -57,7 +57,7 @@ public class NumberGeneration {
             return employee.getEmployeeNumber();
         }
         Random rand = new Random();
-        return Integer.toString(rand.nextInt(9000)+1000);
+        return Integer.toString(rand.nextInt(1000)+100);
 
     }
 }

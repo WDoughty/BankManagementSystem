@@ -17,16 +17,13 @@ public class DatabaseTest {
     public void dataBaseSetUpTest(){
 
 
-//        Database db = new Database();
-//        Client client1 = new Client();
-//        client1.setPassword("test");
-//        client1.setName("Testing Test");
-//        String accNum =NumberGeneration.accountNumberGenerator("checking",client1);
-//        db.putClient(client1);
-//        AccountInterface account = new CheckingAccount(client1,accNum);
-//        db.putCheckingAccount((CheckingAccount)account,client1.getClientNumber());
-//        System.out.println(accNum);
-
+        Database db = new Database();
+        Employee test = new Employee();
+        test.setHourlyPay(10.00);
+        test.setName("Employee Test");
+        test.setPassword("password");
+        test.setEmployeeNumber(NumberGeneration.employeeNumberGenerator(test));
+        db.putEmployee(test);
     }
 
 }
