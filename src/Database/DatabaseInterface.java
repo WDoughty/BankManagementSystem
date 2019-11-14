@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+import Exception.*;
 import Account.Account;
 import Account.CheckingAccount;
 import Account.CreditAccount;
@@ -33,13 +33,13 @@ public interface DatabaseInterface {
 
     Shift getShifts(String sid);
 
-    UserInterface getUser(String uid);
+    UserInterface getUser(String uid, String password) throws IncorrectUsernamePasswordException;
 
-    Employee getEmployee(String eid);
+    Employee getEmployee(String eid, String password);
 
-    Client getClient(String cid);
+    Client getClient(String cid, String password);
 
-    Administrator getAdministrator(String aid);
+    Administrator getAdministrator(String aid, String password);
 
     List<Account> getAccounts(Client client);
 
@@ -48,6 +48,8 @@ public interface DatabaseInterface {
     CreditAccount getCreditAccount( Client client);
 
     LoanAccount getLoanAccount(Client client);
+
+    List<Employee> getEmployees();
 
     Connection getConnection();
 }

@@ -5,10 +5,12 @@ import Account.AccountInterface;
 import Database.Database;
 import User.*;
 import View.View;
-
+import Exception.*;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.jar.JarEntry;
 
 public class LoginForm implements ActionListener {
 
@@ -17,6 +19,7 @@ public class LoginForm implements ActionListener {
     private JTextField usernameTextField;
     private JPasswordField passwordField;
     private JButton loginButton;
+    private JLabel errLabel;
     private AccountControllerInterface accountController;
     private UserInterface userInterface;
     private UserController userController;
@@ -38,17 +41,31 @@ public class LoginForm implements ActionListener {
         frame.setVisible(true);
     }
 
-    public boolean login(){
+    public boolean login()  {
         db = new Database();
-        userInterface = db.getUser(usernameTextField.getText());
+        try {
+            userInterface = db.getUser(usernameTextField.getText(), passwordField.getText());
+        }
+        catch(IncorrectUsernamePasswordException e){
+            System.out.println(e.toString());
+            errLabel.setText(e.getMessage());
+
+
+        }
         if(userInterface != null){
             System.out.println("User: "+ userInterface.getName());
             if(userInterface instanceof Client){
-                //new clientForm(userInterface);
+
                 new accountsForm(userInterface);
             }
             else if(userInterface instanceof Employee){
-                new employeeForm(userInterface);
+                if(userInterface instanceof Manager){
+                    new manager(userInterface);
+                }
+                else{
+                    new employeeForm(userInterface);
+                }
+
             }
             else if(userInterface instanceof Administrator){
 
@@ -56,6 +73,7 @@ public class LoginForm implements ActionListener {
         }
         else{
             System.out.println("No user");
+
         }
 
 
@@ -68,7 +86,12 @@ public class LoginForm implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == loginButton){
-            if(!usernameTextField.getText().isEmpty() && !passwordField.getText().isEmpty()) login();
+            if(!usernameTextField.getText().isEmpty() && !passwordField.getText().isEmpty())
+                if(!login()){
+                    frame.getContentPane().setVisible(false);
+                    frame.getContentPane().repaint();
+                    frame.getContentPane().setVisible(true);
+                }
 
         }
 

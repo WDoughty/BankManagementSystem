@@ -18,11 +18,12 @@ public class DatabaseTest {
 
 
         Database db = new Database();
-        Employee test = new Employee();
-        test.setHourlyPay(10.00);
-        test.setName("Employee Test");
+        Manager test = new Manager();
+        test.setEmployeeNumber("100");
+        test.setName("Manager Test2");
+        test.setHourlyPay(25.00);
+        test.setHoursWorked(10);
         test.setPassword("password");
-        test.setEmployeeNumber(NumberGeneration.employeeNumberGenerator(test));
         db.putEmployee(test);
     }
 

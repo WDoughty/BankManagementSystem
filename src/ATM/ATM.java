@@ -31,6 +31,13 @@ public class ATM
 			frame = new JFrame("ATM");
 		}
 		return frame;
+	
+	public boolean userLogin(String id , String password, String aid)
+	{
+		customer = db.getClient(id,password);
+		acctNumber = aid;
+		login = customer != null && customer.getPassword() == password;
+		return login;
 	}
 
 	public static void main(String args[])
