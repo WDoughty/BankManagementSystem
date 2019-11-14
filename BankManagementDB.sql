@@ -21,6 +21,7 @@ CREATE TABLE employees (
     emp_password VARCHAR(100),
     emp_hours_worked INT,
     emp_pay DECIMAL,
+    employee_type VARCHAR(50),
     PRIMARY KEY (emp_number)
 );
 

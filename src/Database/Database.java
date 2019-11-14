@@ -6,11 +6,8 @@ import Account.CheckingAccount;
 import Account.LoanAccount;
 import GUI.LoginForm;
 import HR.Shift;
-import User.Administrator;
-import User.Client;
-import User.Employee;
-import User.UserInterface;
-
+import User.*;
+import Exception.*;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import javax.swing.plaf.nimbus.State;
 
 public class Database implements DatabaseInterface {
     private Set<Employee> employeeSet;
@@ -62,11 +58,15 @@ public class Database implements DatabaseInterface {
 
 	@Override
 	public boolean putEmployee(Employee e) {
+		String employeeType= "employee";
+		if(e instanceof Manager){
+			employeeType = "manager";
+		}
 		try {
 			connection = this.getConnection();
 			Statement s = connection.createStatement();
 			if (e.getEmployeeNumber() != null) {
-				s.executeUpdate("insert into employees (emp_number, emp_name, emp_password, emp_pay) values ('" + e.getEmployeeNumber() + "','" + e.getName() + "','" + e.getPassword() + "'," + e.getHourlyPay() +  ")");
+				s.executeUpdate("insert into employees (emp_number, emp_name, emp_password, emp_pay, employee_type) values ('" + e.getEmployeeNumber() + "','" + e.getName() + "','" + e.getPassword() + "','" + e.getHourlyPay() + "','"+ employeeType + "'); ");
 			}
 			connection.close();
 			return true;
@@ -166,17 +166,19 @@ public class Database implements DatabaseInterface {
 	}
 
 	@Override
-	public UserInterface getUser(String uid) {
+	public UserInterface getUser(String uid, String password) throws IncorrectUsernamePasswordException {
 		UserInterface newUser;
 		//TODO
-		newUser = getAdministrator(uid);
+		newUser = getAdministrator(uid,password);
 		if(newUser.getName()== null){
-			newUser = getEmployee(uid);
+			newUser = getEmployee(uid, password);
 			if(newUser.getName()== null){
-				newUser = getClient(uid);
-				if(newUser.getName()== null){
-					return null;
+				newUser = getClient(uid,password);
+				if(newUser.getName() == null) {
+					throw new IncorrectUsernamePasswordException(
+							"Incorrect username or password");
 				}
+
 			}
 		}
 
@@ -184,7 +186,7 @@ public class Database implements DatabaseInterface {
 	}
 
 	@Override
-	public Employee getEmployee(String eid) {
+	public Employee getEmployee(String eid, String password) {
 		Employee employee = new Employee();
 
 		try {
@@ -192,11 +194,22 @@ public class Database implements DatabaseInterface {
 			Statement s = connection.createStatement();
 			ResultSet r = s.executeQuery("select * from employees where emp_number = '" + eid + "';");
 			r.next();
-			employee.setEmployeeNumber(r.getString("emp_number"));
-			employee.setName(r.getString("emp_name"));
-			employee.setPassword(r.getString("emp_password"));
-			employee.setHourlyPay(r.getDouble("emp_pay"));
-			connection.close();
+			String pw = r.getString("emp_password");
+			if(password.equalsIgnoreCase(pw)){
+				if(r.getString("employee_type").equalsIgnoreCase("manager")){
+					employee = new Manager();
+				}
+				employee.setEmployeeNumber(r.getString("emp_number"));
+				employee.setName(r.getString("emp_name"));
+				employee.setPassword(r.getString("emp_password"));
+				employee.setHourlyPay(r.getDouble("emp_pay"));
+				connection.close();
+			}
+			else{
+				connection.close();
+				return null;
+			}
+
 		} catch (SQLException sqle) {
 
 		}
@@ -205,7 +218,7 @@ public class Database implements DatabaseInterface {
 	}
 
 	@Override
-	public Client getClient(String cid) {
+	public Client getClient(String cid, String password) {
 		Client client = new Client();
 
 		try {
@@ -213,10 +226,16 @@ public class Database implements DatabaseInterface {
 			Statement s = connection.createStatement();
 			ResultSet r = s.executeQuery("select * from clients where client_number = '" + cid + "';");
 			r.next();
-			client.setClientNumber(r.getString("client_number"));
-			client.setName(r.getString("client_name"));
-			client.setPassword(r.getString("client_password"));
-			connection.close();
+			String pw = r.getString("client_password");
+			if(password.equalsIgnoreCase(pw)) {
+				client.setClientNumber(r.getString("client_number"));
+				client.setName(r.getString("client_name"));
+				client.setPassword(r.getString("client_password"));
+				connection.close();
+			}
+			else{
+				connection.close();
+			}
 		} catch (SQLException sqle) {
 			System.out.println(sqle.toString());
 			return null;
@@ -226,7 +245,7 @@ public class Database implements DatabaseInterface {
 	}
 
 	@Override
-	public Administrator getAdministrator(String aid) {
+	public Administrator getAdministrator(String aid, String password) {
 		Administrator admin = new Administrator();
 
 		try {
@@ -234,10 +253,17 @@ public class Database implements DatabaseInterface {
 			Statement s = connection.createStatement();
 			ResultSet r = s.executeQuery("select * from administrators where admin_number = '" + aid + "';");
 			r.next();
-			admin.setAdminNumber(r.getString("admin_number"));
-			admin.setName(r.getString("admin_name"));
-			admin.setPassword(r.getString("admin_password"));
-			connection.close();
+			String pw = r.getString("admin_password");
+			if(password.equalsIgnoreCase(pw)) {
+				admin.setAdminNumber(r.getString("admin_number"));
+				admin.setName(r.getString("admin_name"));
+				admin.setPassword(r.getString("admin_password"));
+				connection.close();
+			}
+			else{
+				connection.close();
+				return null;
+			}
 		} catch (SQLException sqle) {
 			System.out.println(sqle.toString());
 		}
@@ -327,6 +353,29 @@ public class Database implements DatabaseInterface {
 
         return account;
     }
+
+    @Override
+	public List<Employee> getEmployees(){
+		List<Employee> list = new ArrayList<>();
+
+		try{
+			connection = this.getConnection();
+			Statement s = connection.createStatement();
+			ResultSet r = s.executeQuery("SELECT * FROM employees");
+			while(r.next()){
+				Employee temp = new Employee();
+				temp.setEmployeeNumber(r.getString("emp_number"));
+				temp.setName(r.getString("emp_name"));
+				temp.setHoursWorked(r.getInt("emp_hours_worked"));
+				temp.setHourlyPay(r.getDouble("emp_pay"));
+				list.add(temp);
+			}
+		}
+		catch(SQLException e){
+			System.out.println(e.toString());
+		}
+		return list;
+	}
 
 
     @Override

@@ -15,7 +15,7 @@ public class ATM
 	
 	public boolean userLogin(String id , String password, String aid)
 	{
-		customer = db.getClient(id);
+		customer = db.getClient(id,password);
 		acctNumber = aid;
 		login = customer != null && customer.getPassword() == password;
 		return login;
