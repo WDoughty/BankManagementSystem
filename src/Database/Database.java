@@ -27,9 +27,22 @@ public class Database implements DatabaseInterface {
 		//TODO
 		try {
 			connection = this.getConnection();
-			Statement s = connection.createStatement();
 			if (c.getClientNumber() != null) {
-				s.executeUpdate("insert into clients values ('" + c.getClientNumber() + "','" + c.getName() + "','" + c.getPassword() + "')");
+				PreparedStatement ps = connection.prepareStatement(
+						"INSERT INTO clients (client_number, client_name, client_password, email_address)"+
+								"VALUES (?,?,?,?)"+
+								"ON DUPLICATE KEY UPDATE "+
+								"client_number = VALUES(client_number),"+
+								"client_name = VALUES(client_name),"+
+								"client_password = VALUES(client_password),"+
+								"email_address = VALUES(email_address)");
+				ps.setString(1,c.getClientNumber());
+				ps.setString(2,c.getName());
+				ps.setString(3,c.getPassword());
+				ps.setString(4,c.getEmail());
+				int retval = ps.executeUpdate();
+				System.out.printf("executeUpdate returned %d%n", retval);
+
 			}
 
 			connection.close();
@@ -44,9 +57,19 @@ public class Database implements DatabaseInterface {
 		//TODO
 		try {
 			connection = this.getConnection();
-			Statement s = connection.createStatement();
 			if (a.getAdminNumber() != null) {
-				s.executeUpdate("insert into administrators values ('" + a.getAdminNumber() + "','" + a.getName() + "','" + a.getPassword() + "')");
+				PreparedStatement ps = connection.prepareStatement(
+						"INSERT INTO administrators (admin_number, admin_name, admin_password)" +
+								"VALUES (?,?,?)"+
+								"ON DUPLICATE KEY UPDATE "+
+								"admin_number = VALUES(admin_number),"+
+								"admin_name = VALUES(admin_name),"+
+								"admin_password = VALUES(admin_password)");
+				ps.setString(1,a.getAdminNumber());
+				ps.setString(2,a.getName());
+				ps.setString(3,a.getPassword());
+				int retval = ps.executeUpdate();
+				System.out.printf("executeUpdate returned %d%n", retval);
 			}
 
 			connection.close();
@@ -64,9 +87,26 @@ public class Database implements DatabaseInterface {
 		}
 		try {
 			connection = this.getConnection();
-			Statement s = connection.createStatement();
+			//Statement s = connection.createStatement();
 			if (e.getEmployeeNumber() != null) {
-				s.executeUpdate("insert into employees (emp_number, emp_name, emp_password, emp_pay, employee_type) values ('" + e.getEmployeeNumber() + "','" + e.getName() + "','" + e.getPassword() + "','" + e.getHourlyPay() + "','"+ employeeType + "'); ");
+				PreparedStatement ps = connection.prepareStatement(
+						"INSERT INTO employees (emp_number, emp_name, emp_password, emp_hours_worked, emp_pay, employee_type)" +
+						"VALUES (?,?,?,?,?,?)" +
+						"ON DUPLICATE KEY UPDATE "+
+						"emp_number = VALUES(emp_number),"+
+						"emp_name = VALUES(emp_name),"+
+						"emp_password = VALUES(emp_password)," +
+						"emp_hours_worked = VALUES(emp_hours_worked),"+
+						"emp_pay = VALUES(emp_pay),"+
+						"employee_type = VALUES(employee_type)");
+				ps.setString(1,e.getEmployeeNumber());
+				ps.setString(2,e.getName());
+				ps.setString(3,e.getPassword());
+				ps.setDouble(4,e.getHoursWorked());
+				ps.setDouble(5,e.getHourlyPay());
+				ps.setString(6, employeeType);
+				int retval = ps.executeUpdate();
+				System.out.printf("executeUpdate returned %d%n", retval);
 			}
 			connection.close();
 			return true;
@@ -170,11 +210,11 @@ public class Database implements DatabaseInterface {
 		UserInterface newUser;
 		//TODO
 		newUser = getAdministrator(uid,password);
-		if(newUser.getName()== null){
+		if(newUser == null){
 			newUser = getEmployee(uid, password);
-			if(newUser.getName()== null){
+			if(newUser == null){
 				newUser = getClient(uid,password);
-				if(newUser.getName() == null) {
+				if(newUser == null) {
 					throw new IncorrectUsernamePasswordException(
 							"Incorrect username or password");
 				}
@@ -211,7 +251,8 @@ public class Database implements DatabaseInterface {
 			}
 
 		} catch (SQLException sqle) {
-
+			System.out.println(sqle.toString());
+			return null;
 		}
 
 		return employee;
@@ -231,10 +272,12 @@ public class Database implements DatabaseInterface {
 				client.setClientNumber(r.getString("client_number"));
 				client.setName(r.getString("client_name"));
 				client.setPassword(r.getString("client_password"));
+				client.setEmail(r.getString("email_address"));
 				connection.close();
 			}
 			else{
 				connection.close();
+				return null;
 			}
 		} catch (SQLException sqle) {
 			System.out.println(sqle.toString());
@@ -263,9 +306,11 @@ public class Database implements DatabaseInterface {
 			else{
 				connection.close();
 				return null;
+
 			}
 		} catch (SQLException sqle) {
 			System.out.println(sqle.toString());
+			return null;
 		}
 
 		return admin;

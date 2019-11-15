@@ -1,9 +1,8 @@
 package User;
 
 public class Client implements UserInterface {
-    private String clientNumber;
-    private String name;
-    private String password;
+    private String clientNumber,name,password,email;
+
 
     /**
      * Sets the name of the current user
@@ -58,5 +57,13 @@ public class Client implements UserInterface {
 		// TODO Auto-generated method stub
 		return password;
 	}
+
+	public String getEmail(){
+	    return email;
+    }
+
+    public void setEmail(String email){
+	    this.email = email;
+    }
 }
 

@@ -3,16 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="54bbd83e-917a-4056-9e78-0737e140ca84" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BankManagementDB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/BankManagementDB.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BankManagementSystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/BankManagementSystem.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ATM/ATM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ATM/ATM.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/DatabaseInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/DatabaseInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/LoginForm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/accountsForm.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/accountsForm.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/accountsForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/accountsForm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/login.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/login.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Generation/NumberGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Generation/NumberGeneration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tests/DatabaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tests/DatabaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/User/Client.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -203,7 +199,7 @@
       <workItem from="1573162332107" duration="2729000" />
       <workItem from="1573189797245" duration="14056000" />
       <workItem from="1573405118862" duration="4245000" />
-      <workItem from="1573744778859" duration="7788000" />
+      <workItem from="1573744778859" duration="14285000" />
     </task>
     <servers />
   </component>
@@ -241,14 +237,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Account/Account.java</url>
-          <line>27</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/src/Tests/DatabaseTest.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Tests/DatabaseTest.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="6" />
+          <url>file://$PROJECT_DIR$/src/GUI/Settings.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

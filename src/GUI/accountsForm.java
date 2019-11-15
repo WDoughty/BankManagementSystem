@@ -5,7 +5,6 @@ import Database.Database;
 import User.Client;
 import User.UserInterface;
 import View.View;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -14,12 +13,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import Account.*;
-import com.sun.javafx.css.parser.LadderConverter;
 
 public class accountsForm extends DefaultListCellRenderer implements ListSelectionListener, ActionListener {
     private JList<Object> accountList;
     private JPanel panel1;
     private JButton loanApply;
+    private JButton settingsButton;
+    private JButton logoutButton;
     private Database db;
     private List<Account> accounts;
     private JFrame frame;
@@ -50,6 +50,8 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
         accountList.setCellRenderer(this);
         accountList.addListSelectionListener(this);
         loanApply.addActionListener(this);
+        settingsButton.addActionListener(this);
+        logoutButton.addActionListener(this);
     }
 
     @Override
@@ -71,6 +73,12 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == loanApply){
 
+        }
+        else if(e.getSource() == settingsButton){
+            new Settings(userInterface);
+        }
+        else if(e.getSource() == logoutButton){
+            new LoginForm();
         }
     }
 }
