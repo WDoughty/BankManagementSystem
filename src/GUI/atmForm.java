@@ -55,7 +55,7 @@ public class atmForm implements ActionListener
         {
             System.out.println("User: "+ userInterface.getName());
             if(userInterface instanceof Client){
-                new clientATMform(userInterface);
+                new accountsATMform(userInterface);
             }
             else if(userInterface instanceof Employee) {
                 new employeeATMform(userInterface);
