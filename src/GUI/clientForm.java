@@ -56,6 +56,7 @@ public class clientForm implements ActionListener {
             if (!withdrawField.getText().isEmpty() && verifyInput(withdrawField.getText())) {
                 accountController.withdraw(Double.parseDouble(withdrawField.getText()));
                 db.putCheckingAccount((CheckingAccount) accountController.getAccount(), userController.getUserAccountNumber());
+                db.putTransacation(userController.getUserAccountNumber(), ((CheckingAccount) accountController.getAccount()).getAccountNumber(), "withdrawal", Double.parseDouble(withdrawField.getText()));
                 System.out.println("Withdraws: $" + withdrawField.getText());
                 System.out.println("$" + accountController.getBalance());
                 currentBalance.setText("$" + accountController.getBalance());
@@ -66,6 +67,7 @@ public class clientForm implements ActionListener {
             if (!depositField.getText().isEmpty() && verifyInput(depositField.getText())) {
                 accountController.deposit(Double.parseDouble(depositField.getText()));
                 db.putCheckingAccount((CheckingAccount) accountController.getAccount(), userController.getUserAccountNumber());
+                db.putTransacation(userController.getUserAccountNumber(), ((CheckingAccount) accountController.getAccount()).getAccountNumber(), "deposit", Double.parseDouble(depositField.getText()));
                 System.out.println("Deposits: $" + depositField.getText());
                 System.out.println("$" + accountController.getBalance());
                 currentBalance.setText("$" + accountController.getBalance());
