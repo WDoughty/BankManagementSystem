@@ -1,6 +1,7 @@
 package GUI;
 
 import ATM.ATM;
+import Account.AccountController;
 import Account.CheckingAccount;
 import Account.AccountInterface;
 import Database.Database;
@@ -33,6 +34,8 @@ public class clientATMform implements ActionListener
     {
         this.userInterface = userInterface;
         this.accountInterface = accountInterface;
+        userController = new UserController(userInterface);
+        accountController = new AccountController(this.accountInterface);
         frame = ATM.getFrame();
         frame.getContentPane().setVisible(false);
         frame.getContentPane().repaint();
@@ -56,13 +59,15 @@ public class clientATMform implements ActionListener
         {
             if(!DepositText.getText().isEmpty() && Double.parseDouble(DepositText.getText()) > 0)
             {
-                accountController.deposit(Double.parseDouble(DepositText.getText()));
-                db.putCheckingAccount((CheckingAccount) accountController.getAccount(), userController.getUserAccountNumber());
-                db.putTransacation(userController.getUserAccountNumber(), ((CheckingAccount) accountController.getAccount()).getAccountNumber(), "deposit", Double.parseDouble(DepositText.getText()));
-                ATM.deposit(Double.parseDouble(DepositText.getText()));
-                System.out.println("Deposits: $" + DepositText.getText());
-                System.out.println("$" + accountController.getBalance());
-                currentBalance.setText("$" + accountController.getBalance());
+                if(accountController.getAccount() instanceof CheckingAccount) {
+                    accountController.deposit(Double.parseDouble(DepositText.getText()));
+                    db.putCheckingAccount((CheckingAccount) accountController.getAccount(), userController.getUserAccountNumber());
+                    db.putTransacation(userController.getUserAccountNumber(), ((CheckingAccount) accountController.getAccount()).getAccountNumber(), "deposit", Double.parseDouble(DepositText.getText()));
+                    ATM.deposit(Double.parseDouble(DepositText.getText()));
+                    System.out.println("Deposits: $" + DepositText.getText());
+                    System.out.println("$" + accountController.getBalance());
+                    currentBalance.setText("$" + accountController.getBalance());
+                }
             }
 
             frame.getContentPane().repaint();

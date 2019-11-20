@@ -40,17 +40,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../mysql connector/mysql-connector-java-8.0.18/mysql-connector-java-8.0.18.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://D:/kaleb/Documents/mysql-connector-java-8.0.18/mysql-connector-java-8.0.18.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../JDBC/mysql-connector-java-8.0.18/mysql-connector-java-8.0.18.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -44,6 +44,7 @@ public class clientForm implements ActionListener {
         depositButton.addActionListener(this);
         currentBalance.setText("$" + accountController.getBalance());
 
+
     }
 
 
