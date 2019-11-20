@@ -43,6 +43,11 @@ public class clientATMform implements ActionListener
         frame.setVisible(true);
         db = new Database();
         currentBalance.setText("$" + accountController.getBalance());
+        depositButton.addActionListener(this);
+        withdrawButton.addActionListener(this);
+        buyStampsButton.addActionListener(this);
+        logOutButton.addActionListener(this);
+
     }
     @Override
     public void actionPerformed(ActionEvent e)
@@ -53,6 +58,7 @@ public class clientATMform implements ActionListener
             {
                 accountController.deposit(Double.parseDouble(DepositText.getText()));
                 db.putCheckingAccount((CheckingAccount) accountController.getAccount(), userController.getUserAccountNumber());
+                db.putTransacation(userController.getUserAccountNumber(), ((CheckingAccount) accountController.getAccount()).getAccountNumber(), "deposit", Double.parseDouble(DepositText.getText()));
                 ATM.deposit(Double.parseDouble(DepositText.getText()));
                 System.out.println("Deposits: $" + DepositText.getText());
                 System.out.println("$" + accountController.getBalance());
@@ -71,6 +77,7 @@ public class clientATMform implements ActionListener
                     if (withdraw % 20 == 0) {
                         accountController.withdraw(withdraw);
                         db.putCheckingAccount((CheckingAccount) accountController.getAccount(), userController.getUserAccountNumber());
+                        db.putTransacation(userController.getUserAccountNumber(), ((CheckingAccount) accountController.getAccount()).getAccountNumber(), "withdrawal", Double.parseDouble(WithdrawalText.getText()));
                         ATM.withdraw(withdraw);
                         System.out.println("Withdraws: $" + withdraw);
                         System.out.println("$" + accountController.getBalance());
@@ -106,6 +113,7 @@ public class clientATMform implements ActionListener
                     {
                         accountController.withdraw(stamps * .55);
                         db.putCheckingAccount((CheckingAccount) accountController.getAccount(), userController.getUserAccountNumber());
+                        db.putTransacation(userController.getUserAccountNumber(), ((CheckingAccount) accountController.getAccount()).getAccountNumber(), "withdrawal", stamps * .55);
                         ATM.buyStamps(stamps);
                         currentBalance.setText("$" + accountController.getBalance());
                     }

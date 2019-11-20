@@ -4,9 +4,7 @@ import Account.Account;
 import Database.Database;
 import User.Client;
 import User.UserInterface;
-import Account.AccountInterface;
 import ATM.ATM;
-
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -14,6 +12,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import Account.*;
 
 
 public class accountsATMform extends DefaultListCellRenderer implements ListSelectionListener, ActionListener
@@ -23,10 +22,8 @@ public class accountsATMform extends DefaultListCellRenderer implements ListSele
     private JButton logoutButton;
     private Database db;
     private List<Account> accounts;
-
     private JFrame frame;
     private UserInterface userInterface;
-    private AccountInterface accountInterface;
 
     public accountsATMform(UserInterface userInterface)
     {
@@ -54,6 +51,12 @@ public class accountsATMform extends DefaultListCellRenderer implements ListSele
         accountList.addListSelectionListener(this);
     }
 
+    @Override
+    public void valueChanged(ListSelectionEvent e)
+    {
+        Account sv = (Account)((JList)e.getSource()).getSelectedValue();
+        new clientATMform(userInterface , sv);
+    }
 
     public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
         super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
@@ -71,12 +74,5 @@ public class accountsATMform extends DefaultListCellRenderer implements ListSele
         {
             new atmForm();
         }
-    }
-
-    @Override
-    public void valueChanged(ListSelectionEvent e)
-    {
-        Account sv = (Account)((JList)e.getSource()).getSelectedValue();
-        new clientATMform(userInterface,sv);
     }
 }
