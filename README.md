@@ -7,6 +7,8 @@ and transfer funds for clients. HR should be able to schedule shifts for employe
 
 # DATABASE CHANGED
 Get accounts and get users now searchs database based on client number only. This will allow us to return all accounts associated with user.
+
+The Database creation sql script has been updated. To update existing db add transactions table. Also make sure email_address and employee_type have been added to clients and employees respectively.
   
   
  # Use Cases
