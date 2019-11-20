@@ -26,18 +26,11 @@ public class ATM
 	}
 
 
-	public static JFrame getFrame(){
-		if(frame == null){
+	public static JFrame getFrame() {
+		if (frame == null) {
 			frame = new JFrame("ATM");
 		}
 		return frame;
-	
-	public boolean userLogin(String id , String password, String aid)
-	{
-		customer = db.getClient(id,password);
-		acctNumber = aid;
-		login = customer != null && customer.getPassword() == password;
-		return login;
 	}
 
 	public static void main(String args[])
@@ -49,69 +42,69 @@ public class ATM
 			}
 		});
 	}
-	public boolean buyStamps(int numStamps)
-	{
-		if(numStamps <= stamps)
-		{
-			if (numStamps > 0 && numStamps % 1 == 0)
-			{
-				double total = numStamps * .55;
+//	public boolean buyStamps(int numStamps)
+//	{
+//		if(numStamps <= stamps)
+//		{
+//			if (numStamps > 0 && numStamps % 1 == 0)
+//			{
+//				double total = numStamps * .55;
+//
+//				if (cusAcct.getBalance() >= total)
+//				{
+//					cusAcct.withdraw(total);
+//					stamps -= numStamps;
+//					return true;
+//				}
+//
+//				else
+//				{
+//					System.out.println("Insufficient funds.");
+//					return false;
+//				}
+//			}
+//
+//			else
+//			{
+//				System.out.println("Invalid number entered.");
+//				return false;
+//			}
+//		}
+//
+//		else
+//		{
+//			System.out.println("Not enough stamps in machine. Please enter an amount lower than: " + stamps);
+//			return false;
+//		}
+//	}
 
-				if (cusAcct.getBalance() >= total)
-				{
-					cusAcct.withdraw(total);
-					stamps -= numStamps;
-					return true;
-				}
-
-				else
-				{
-					System.out.println("Insufficient funds.");
-					return false;
-				}
-			}
-
-			else
-			{
-				System.out.println("Invalid number entered.");
-				return false;
-			}
-		}
-
-		else
-		{
-			System.out.println("Not enough stamps in machine. Please enter an amount lower than: " + stamps);
-			return false;
-		}
-	}
-
-	public void withdraw(int amount)
-	{
-		if (cusAcct.getBalance() >= amount)
-		{
-			if (amount % 20 == 0 && amount > 0)
-			{
-				if (amount <= atmBalance)
-				{
-					cusAcct.withdraw(amount);
-					atmBalance = atmBalance - amount;
-				}
-
-				else
-				{
-					System.out.println("Insufficient ATM balance. Please enter bank for withdrawal.");
-				}
-			}
-
-			else
-			{
-				System.out.println("Invalid number entered. Amount must be in multiples of 20 and greater than 0.");
-			}
-		}
-
-		else
-		{
-			System.out.println("Insufficient funds.");
-		}
-	}
+//	public void withdraw(int amount)
+//	{
+//		if (cusAcct.getBalance() >= amount)
+//		{
+//			if (amount % 20 == 0 && amount > 0)
+//			{
+//				if (amount <= atmBalance)
+//				{
+//					cusAcct.withdraw(amount);
+//					atmBalance = atmBalance - amount;
+//				}
+//
+//				else
+//				{
+//					System.out.println("Insufficient ATM balance. Please enter bank for withdrawal.");
+//				}
+//			}
+//
+//			else
+//			{
+//				System.out.println("Invalid number entered. Amount must be in multiples of 20 and greater than 0.");
+//			}
+//		}
+//
+//		else
+//		{
+//			System.out.println("Insufficient funds.");
+//		}
+//	}
 }

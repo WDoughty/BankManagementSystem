@@ -48,6 +48,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="d0bbe37a-14d5-4eb7-b57a-fb6d4faddd17" />
+  </component>
   <component name="ProjectId" id="1StJViyW0kYMz7DlgEhew6W3ZA0" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -70,7 +73,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -200,6 +203,7 @@
       <workItem from="1573189797245" duration="14056000" />
       <workItem from="1573405118862" duration="4245000" />
       <workItem from="1573744778859" duration="14285000" />
+      <workItem from="1574221983284" duration="665000" />
     </task>
     <servers />
   </component>
