@@ -20,6 +20,7 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
     private JButton loanApply;
     private JButton settingsButton;
     private JButton logoutButton;
+    private JButton statementButton;
     private Database db;
     private List<Account> accounts;
     private JFrame frame;
@@ -52,6 +53,7 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
         loanApply.addActionListener(this);
         settingsButton.addActionListener(this);
         logoutButton.addActionListener(this);
+        statementButton.addActionListener(this);
     }
 
     @Override
@@ -72,7 +74,7 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == loanApply){
-
+            new LoanApplication(userInterface);
         }
         else if(e.getSource() == settingsButton){
             new Settings(userInterface);
