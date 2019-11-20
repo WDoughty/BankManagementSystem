@@ -2,6 +2,7 @@ package GUI;
 
 import User.UserInterface;
 import View.View;
+import ATM.ATM;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -38,6 +39,36 @@ public class employeeATMform implements ActionListener
         if(e.getSource() == logoutButton){
             userInterface = null;
             new LoginForm();
+        }
+
+        if(e.getSource() == fillCashButton)
+        {
+            ATM.cashFill();
+        }
+
+        if(e.getSource() == fillStampsButton)
+        {
+            ATM.stampFill();
+        }
+
+        if(e.getSource() == viewLogButton)
+        {
+            System.out.println(ATM.viewLog());
+        }
+
+        if(e.getSource() == viewCashAndStampsButton)
+        {
+            System.out.println(ATM.viewCS());
+        }
+
+        if(e.getSource() == clearLogButton)
+        {
+            ATM.clear();
+        }
+
+        if(e.getSource() == emptyDepositsButton)
+        {
+            ATM.emptyDeposits();
         }
     }
 }

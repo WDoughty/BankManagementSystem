@@ -8,6 +8,7 @@ import ATM.ATM;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import Exception.*;
 
 public class atmForm implements ActionListener
 {
@@ -36,24 +37,17 @@ public class atmForm implements ActionListener
     }
 
 
-    public boolean login()
-    {
+    public boolean login() throws IncorrectUsernamePasswordException {
         db = new Database();
-        userInterface = db.getUser(usernameTextField.getText());
+        userInterface = db.getUser(usernameTextField.getText() , passwordField.getText());
         if(userInterface != null)
         {
             System.out.println("User: "+ userInterface.getName());
             if(userInterface instanceof Client){
-                //new clientForm(userInterface);
                 new clientATMform(userInterface);
             }
-            else if(userInterface instanceof Employee)
-            {
+            else if(userInterface instanceof Employee) {
                 new employeeATMform(userInterface);
-            }
-            else if(userInterface instanceof Administrator)
-            {
-
             }
         }
         else{
@@ -72,7 +66,11 @@ public class atmForm implements ActionListener
             {
                 if (usernameTextField.getText().equals(userInterface.getPassword()))
                 {
-                    login();
+                    try {
+                        login();
+                    } catch (IncorrectUsernamePasswordException ex) {
+                        ex.printStackTrace();
+                    }
                 }
 
                 else

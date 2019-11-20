@@ -8,17 +8,22 @@ import javax.swing.*;
 import java.awt.*;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class ATM
 {
 	private Database db;
-	private int stamps = 4000;
-	private int atmBalance = 10000;
+	private static int stampTotal = 4000;
+	private static int atmBalance = 10000;
+	private static ArrayList<Integer> deposits = new ArrayList<Integer>();
+	private static int depositTotal;
+	private static ArrayList<Integer> withdrawals = new ArrayList<Integer>();
+	private static int withdrawalTotal;
 	private static JFrame frame;
 
 
-
-	public ATM(){
+	public ATM()
+	{
 		frame = new JFrame("ATM");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500, 500);
@@ -33,8 +38,7 @@ public class ATM
 		return frame;
 	}
 
-	public static void main(String args[])
-	{
+	public static void main(String args[]) {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -42,6 +46,58 @@ public class ATM
 			}
 		});
 	}
+
+
+	public static void deposit(int deposit)
+	{
+		deposits.add(deposit);
+		depositTotal += deposit;
+
+	}
+
+	public void withdraw(int withdrawal)
+	{
+		withdrawals.add(withdrawal);
+		withdrawalTotal += withdrawal;
+		atmBalance -= withdrawal;
+	}
+
+	public static void emptyDeposits()
+	{
+		depositTotal = 0;
+	}
+	public static void clear()
+	{
+		deposits.clear();
+		withdrawals.clear();
+	}
+
+	public static String viewLog()
+	{
+		String log = "Deposits                    Withdrawals\n";
+		for(int i = 0; i < deposits.size(); i++)
+		{
+			log += deposits.get(i).toString() + "                                 " + withdrawals.get(i) + "\n";
+		}
+
+		return log;
+	}
+
+	public static void cashFill()
+	{
+		atmBalance = 10000;
+	}
+
+	public static void stampFill()
+	{
+		stampTotal = 4000;
+	}
+
+	public static String viewCS()
+	{
+		return "Cash: " + atmBalance + " " + "Stamps: " + stampTotal;
+	}
+}
 //	public boolean buyStamps(int numStamps)
 //	{
 //		if(numStamps <= stamps)
@@ -107,4 +163,3 @@ public class ATM
 //			System.out.println("Insufficient funds.");
 //		}
 //	}
-}
