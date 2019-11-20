@@ -3,7 +3,6 @@ package GUI;
 import Database.Database;
 
 import User.*;
-import View.View;
 import ATM.ATM;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,6 +18,7 @@ public class atmForm implements ActionListener
     private JPanel ATMpanel;
     private UserInterface userInterface;
     private Database db;
+    private JLabel errLabel;
 
     public atmForm()
     {
@@ -26,7 +26,7 @@ public class atmForm implements ActionListener
         frame.getContentPane().setVisible(false);
         frame.getContentPane().repaint();
         atmPage();
-        loginButton.addActionListener((ActionListener) this);
+        loginButton.addActionListener(this);
 
     }
 
@@ -37,9 +37,20 @@ public class atmForm implements ActionListener
     }
 
 
-    public boolean login() throws IncorrectUsernamePasswordException {
+    public boolean login()
+    {
         db = new Database();
-        userInterface = db.getUser(usernameTextField.getText() , passwordField.getText());
+        try
+        {
+            userInterface = db.getUser(usernameTextField.getText(), passwordField.getText());
+        }
+
+        catch(IncorrectUsernamePasswordException e)
+        {
+            System.out.println(e.toString());
+            errLabel.setText(e.getMessage());
+        }
+
         if(userInterface != null)
         {
             System.out.println("User: "+ userInterface.getName());
@@ -60,25 +71,15 @@ public class atmForm implements ActionListener
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        if(e.getSource() == loginButton)
-        {
-            if(!usernameTextField.getText().isEmpty() && !passwordField.getText().isEmpty())
-            {
-                if (usernameTextField.getText().equals(userInterface.getPassword()))
-                {
-                    try {
-                        login();
-                    } catch (IncorrectUsernamePasswordException ex) {
-                        ex.printStackTrace();
+            if(e.getSource() == loginButton){
+                if(!usernameTextField.getText().isEmpty() && !passwordField.getText().isEmpty()) {
+                    if (!login()) {
+                        frame.getContentPane().setVisible(false);
+                        frame.getContentPane().repaint();
+                        frame.getContentPane().setVisible(true);
                     }
                 }
-
-                else
-                {
-                    System.out.println("Password Incorrect");
-                }
             }
-        }
     }
 }
 

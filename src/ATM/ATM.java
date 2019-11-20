@@ -97,6 +97,11 @@ public class ATM
 	{
 		return "Cash: " + atmBalance + " " + "Stamps: " + stampTotal;
 	}
+
+	public static void buyStamps(int stamps)
+	{
+
+	}
 }
 //	public boolean buyStamps(int numStamps)
 //	{
