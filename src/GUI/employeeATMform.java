@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 public class employeeATMform implements ActionListener
 {
     private JFrame frame;
-    private JPanel employeeATM;
     private UserInterface userInterface;
     private JButton viewLogButton;
     private JButton fillCashButton;
@@ -25,12 +24,19 @@ public class employeeATMform implements ActionListener
     public employeeATMform(UserInterface userInterface)
     {
         this.userInterface = userInterface;
-        frame = View.getFrame();
+        frame = ATM.getFrame();
         frame.getContentPane().setVisible(false);
         frame.getContentPane().repaint();
         frame.getContentPane().removeAll();
-        frame.setContentPane(employeeATM);
+        frame.setContentPane(EmployeeATM);
+        frame.getContentPane().setVisible(true);
         logoutButton.addActionListener(this);
+        fillCashButton.addActionListener(this);
+        fillStampsButton.addActionListener(this);
+        clearLogButton.addActionListener(this);
+        emptyDepositsButton.addActionListener(this);
+        viewCashAndStampsButton.addActionListener(this);
+        viewLogButton.addActionListener(this);
     }
 
     @Override
@@ -38,7 +44,7 @@ public class employeeATMform implements ActionListener
     {
         if(e.getSource() == logoutButton){
             userInterface = null;
-            new LoginForm();
+            new atmForm();
         }
 
         if(e.getSource() == fillCashButton)

@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import Account.*;
 
+
 public class accountsForm extends DefaultListCellRenderer implements ListSelectionListener, ActionListener {
     private JList<Object> accountList;
     private JPanel panel1;
@@ -77,10 +78,15 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
             new LoanApplication(userInterface);
         }
         else if(e.getSource() == settingsButton){
-            new Settings(userInterface);
+            //new Settings(userInterface);
         }
         else if(e.getSource() == logoutButton){
             new LoginForm();
+        }
+
+        else if (e.getSource() == statementButton){
+            new HistoryForm(userInterface);
+
         }
     }
 }
