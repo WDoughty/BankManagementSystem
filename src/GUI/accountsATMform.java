@@ -4,7 +4,7 @@ import Account.Account;
 import Database.Database;
 import User.Client;
 import User.UserInterface;
-import View.View;
+import ATM.ATM;
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -14,26 +14,25 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import Account.*;
 
-public class accountsForm extends DefaultListCellRenderer implements ListSelectionListener, ActionListener {
+
+public class accountsATMform extends DefaultListCellRenderer implements ListSelectionListener, ActionListener
+{
     private JList<Object> accountList;
-    private JPanel panel1;
-    private JButton loanApply;
-    private JButton settingsButton;
+    private JPanel accountATMpanel;
     private JButton logoutButton;
-    private JButton statementButton;
     private Database db;
     private List<Account> accounts;
     private JFrame frame;
     private UserInterface userInterface;
-    private AccountInterface accountInterface;
 
-    public accountsForm(UserInterface userInterface){
+    public accountsATMform(UserInterface userInterface)
+    {
         this.userInterface = userInterface;
-        frame = View.getFrame();
+        frame = ATM.getFrame();
         frame.getContentPane().setVisible(false);
         frame.getContentPane().repaint();
         frame.getContentPane().removeAll();
-        frame.setContentPane(panel1);
+        frame.setContentPane(accountATMpanel);
         frame.revalidate();
         frame.getContentPane().setVisible(true);
         frame.setVisible(true);
@@ -50,16 +49,13 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
         accountList.setModel(listModel);
         accountList.setCellRenderer(this);
         accountList.addListSelectionListener(this);
-        loanApply.addActionListener(this);
-        settingsButton.addActionListener(this);
-        logoutButton.addActionListener(this);
-        statementButton.addActionListener(this);
     }
 
     @Override
-    public void valueChanged(ListSelectionEvent e) {
+    public void valueChanged(ListSelectionEvent e)
+    {
         Account sv = (Account)((JList)e.getSource()).getSelectedValue();
-        new clientForm(userInterface,sv);
+        new clientATMform(userInterface , sv);
     }
 
     public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
@@ -72,15 +68,11 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == loanApply){
-            new LoanApplication(userInterface);
-        }
-        else if(e.getSource() == settingsButton){
-            new Settings(userInterface);
-        }
-        else if(e.getSource() == logoutButton){
-            new LoginForm();
+    public void actionPerformed(ActionEvent e)
+    {
+        if(e.getSource() == logoutButton)
+        {
+            new atmForm();
         }
     }
 }

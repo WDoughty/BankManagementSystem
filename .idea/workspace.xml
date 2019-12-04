@@ -45,6 +45,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="d0bbe37a-14d5-4eb7-b57a-fb6d4faddd17" />
+  </component>
   <component name="ProjectId" id="1StJViyW0kYMz7DlgEhew6W3ZA0" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -61,13 +64,13 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="create.test.in.the.same.root" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../mysql connector/mysql-connector-java-8.0.18/mysql-connector-java-8.0.18.jar!/" />
+    <property name="last_opened_file_path" value="D:/kaleb/Documents/mysql-connector-java-8.0.18/mysql-connector-java-8.0.18.jar!/" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
@@ -93,6 +96,19 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.View">
+    <configuration name="ATM" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ATM.ATM" />
+      <module name="BankManagementSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ATM.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LoginForm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="LoginForm" />
       <module name="BankManagementSystem" />
@@ -144,29 +160,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserInterfaceTest.checkEmployee" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="BankManagementSystem" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Tests" />
-      <option name="MAIN_CLASS_NAME" value="Tests.UserInterfaceTest" />
-      <option name="METHOD_NAME" value="checkEmployee" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.View" />
+        <item itemvalue="Application.ATM" />
         <item itemvalue="JUnit.DatabaseTest.dataBaseSetUpTest" />
         <item itemvalue="Application.LoginForm" />
         <item itemvalue="JUnit.UserInterfaceTest" />
-        <item itemvalue="JUnit.UserInterfaceTest.checkEmployee" />
       </list>
     </recent_temporary>
   </component>
@@ -196,7 +196,17 @@
       <workItem from="1573162332107" duration="2729000" />
       <workItem from="1573189797245" duration="14056000" />
       <workItem from="1573405118862" duration="4245000" />
+<<<<<<< HEAD
       <workItem from="1573744778859" duration="16129000" />
+=======
+      <workItem from="1573744778859" duration="14285000" />
+      <workItem from="1574221983284" duration="6642000" />
+      <workItem from="1574253900408" duration="14315000" />
+      <workItem from="1574270163416" duration="1740000" />
+      <workItem from="1574271952814" duration="93000" />
+      <workItem from="1574272284455" duration="2178000" />
+      <workItem from="1574274497155" duration="10000" />
+>>>>>>> 79ea40cb41b9a79f89bafb9405f4f1ee97edaec7
     </task>
     <servers />
   </component>

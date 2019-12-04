@@ -8,11 +8,14 @@ import GUI.LoginForm;
 import HR.Shift;
 import User.*;
 import Exception.*;
+
+import java.math.BigDecimal;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 
@@ -420,6 +423,56 @@ public class Database implements DatabaseInterface {
 			System.out.println(e.toString());
 		}
 		return list;
+	}
+
+	public boolean putTransacation(String client, String account, String type, double amount) {
+		try {
+			connection = this.getConnection();
+			Random rand = new Random();
+			String id = Integer.toString(rand.nextInt(999999998) + 1);
+			PreparedStatement ps = connection.prepareStatement(
+					"INSERT INTO transactions (transaction_id, client_number, account_number, transaction_type, transaction_amount)"+
+							"VALUES (?,?,?,?,?)"+
+							"ON DUPLICATE KEY UPDATE "+
+							"transaction_id = VALUES(transaction_id),"+
+							"client_number = VALUES(client_number),"+
+							"account_number = VALUES(account_number),"+
+							"transaction_type = VALUES(transaction_type),"+
+							"transaction_amount = VALUES(transaction_amount)");
+			ps.setString(1,id);
+			ps.setString(2,client);
+			ps.setString(3,account);
+			ps.setString(4,type);
+			ps.setBigDecimal(5, BigDecimal.valueOf(amount));
+			int retval = ps.executeUpdate();
+			System.out.printf("executeUpdate returned %d%n", retval);
+
+
+
+			connection.close();
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
+	}
+
+	public String getTransactions(String client) {
+		String result = "";
+
+		try {
+			connection = this.getConnection();
+			Statement s = connection.createStatement();
+			ResultSet r = s.executeQuery("select * from transactions where client_number = '" + client + "';");
+
+			while(r.next()) {
+				result += r.getString("transaction_id") + " - " + r.getString("account_number") + " - " + r.getString("transaction_type") + " - " + r.getDouble("transaction_amount") + System.getProperty("line.separator");
+			}
+
+			connection.close();
+			return result;
+		} catch (SQLException sqle) {
+			return null;
+		}
 	}
 
 
