@@ -1,5 +1,7 @@
 package Account;
 
+import Communication.Email;
+
 public class AccountController implements AccountControllerInterface {
 
     public AccountInterface model;
@@ -94,6 +96,11 @@ public class AccountController implements AccountControllerInterface {
 
     public AccountInterface getAccount(){
         return model;
+    }
+
+    public boolean emailUpdate(String to, String update){
+        Email email = new Email();
+        return email.SendEmail(to,update);
     }
 
 

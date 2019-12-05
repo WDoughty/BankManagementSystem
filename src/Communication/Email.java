@@ -7,7 +7,7 @@ import javax.activation.*;
 
 public class Email implements EmailInterface {
 
-    public Email(String to){
+    public boolean SendEmail(String to, String update){
         String username = "bankmanagementtest@gmail.com";
         String password = "bankManagementTest";
         String host = "smtp.gmail.com";
@@ -27,9 +27,9 @@ public class Email implements EmailInterface {
         try{
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
-            message.addRecipient(Message.RecipientType.TO,new InternetAddress(username));
-            message.setSubject("Subject");
-            message.setText("Test message text");
+            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
+            message.setSubject("Bank Management System");
+            message.setText(update);
             Transport t = session.getTransport("smtps");
             //t.connect();
             t.connect(host,username,password);
@@ -38,9 +38,11 @@ public class Email implements EmailInterface {
 
         } catch (AddressException e) {
             e.printStackTrace();
+            return false;
         } catch (MessagingException e) {
             e.printStackTrace();
+            return false;
         }
-
+        return true;
     }
 }

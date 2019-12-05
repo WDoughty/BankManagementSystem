@@ -3,6 +3,7 @@ package GUI;
 import Account.Account;
 import Database.Database;
 import User.Client;
+import User.UserController;
 import User.UserInterface;
 import View.View;
 import javax.swing.*;
@@ -65,7 +66,8 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
         }
         else if( ((JList) e.getSource()).getSelectedValue() instanceof BrokerageAccount){
             Account sv = (Account) ((JList) e.getSource()).getSelectedValue();
-            new Brokerage(userInterface, sv);
+            UserController userController = new UserController(userInterface);
+            new Brokerage(userController, sv);
         }
     }
 

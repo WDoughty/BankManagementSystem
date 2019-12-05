@@ -23,12 +23,12 @@ public class Brokerage implements ActionListener {
     private JLabel priceLabel;
     private JTextField quantityField;
     private JButton backButton;
-    private UserInterface user;
+    private UserController user;
     private JFrame frame;
     private Database db;
     private BrokerageAccount sv;
 
-    public Brokerage(UserInterface user, Account sv){
+    public Brokerage(UserController user, Account sv){
         this.sv = (BrokerageAccount) sv;
         this.user = user;
         db = new Database();
@@ -49,14 +49,14 @@ public class Brokerage implements ActionListener {
             try {
                 Stock stock = YahooFinance.get(stockSearchField.getText());
                 BigDecimal price = stock.getQuote().getPrice();
-                priceLabel.setText("" + price);
+                priceLabel.setText("$" + price);
 
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
         else if(e.getSource() == backButton){
-            new accountsForm(user);
+            new accountsForm(user.getModel());
         }
 
         else if(e.getSource() == buyButton && !quantityField.getText().isEmpty()){
@@ -68,10 +68,13 @@ public class Brokerage implements ActionListener {
 
 
     public void buyStock(String stock, int quantity){
-        UserController uc = new UserController(user);
+
         sv.setQuantity(quantity);
         sv.setStock(stock);
-        db.putBrokerageAccount(sv,uc.getUserAccountNumber(),stock,quantity);
+        AccountController accountController =  new AccountController(sv);
+        accountController.emailUpdate(user.getEmail(),"Brokerage Account Update: " +
+                "Purchase of " + stock +", quantity: " + quantity + " for price: " + priceLabel.getText());
+        db.putBrokerageAccount(sv,user.getUserAccountNumber(),stock,quantity);
 
 
     }

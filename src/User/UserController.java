@@ -148,4 +148,22 @@ public class UserController {
         model.setPassword(password);
     }
 
+    public UserInterface getModel(){
+        return model;
+    }
+
+    public String getEmail(){
+        if(model instanceof Client) {
+            return ((Client)model).getEmail();
+        }
+        return null;
+    }
+
+    public void setEmail(String email){
+        if(model instanceof Client){
+            ((Client)model).setEmail(email);
+        }
+
+    }
+
 }

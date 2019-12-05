@@ -9,7 +9,8 @@ public class EmailTest {
 
     @Test
     public void testEmail(){
-        new Email("bankmanagementtest@gmail.com");
+        Email email = new Email();
+        email.SendEmail("bankmanagementtest@gmail.com","Shitfuckass");
 
     }
 
