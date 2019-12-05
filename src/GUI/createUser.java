@@ -36,6 +36,7 @@ public class createUser implements ActionListener {
         list.add("checking");
         list.add("loan");
         list.add("credit");
+        list.add("brokerage");
         list.add("employee");
         list.add("administrator");
         SpinnerListModel model = new SpinnerListModel();
@@ -103,6 +104,11 @@ public class createUser implements ActionListener {
                 else if(type.equalsIgnoreCase("credit")){
                     account = new CreditAccount((Client)newUser,userNum);
                     db.putCreditAccount((CreditAccount)account,((Client) newUser).getClientNumber());
+                }
+
+                else if(type.equalsIgnoreCase("brokerage")){
+                    account = new BrokerageAccount((Client) newUser,userNum);
+                    db.putBrokerageAccount((BrokerageAccount)account,((Client)newUser).getClientNumber(), "",0);
                 }
             }
             else if(newUser instanceof Employee){

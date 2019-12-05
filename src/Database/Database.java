@@ -1,13 +1,13 @@
 package Database;
 
-import Account.Account;
-import Account.CreditAccount;
-import Account.CheckingAccount;
-import Account.LoanAccount;
+import Account.*;
 import GUI.LoginForm;
 import HR.Shift;
 import User.*;
 import Exception.*;
+import com.sun.corba.se.pept.broker.Broker;
+import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
 
 import java.math.BigDecimal;
 import java.sql.*;
@@ -187,6 +187,35 @@ public class Database implements DatabaseInterface {
 		}
 	}
 
+	@Override
+	public boolean putBrokerageAccount(BrokerageAccount acc, String cid, String stock, int quantity){
+		try{
+			connection = this.getConnection();
+
+			if(acc.getAccountNumber() != null){
+				PreparedStatement ps = connection.prepareStatement(
+						"INSERT INTO brokerage_accounts (brk_number,client_number,stock_abbrv,stock_amount)" +
+								"VALUES (?,?,?,?)"+
+								"ON DUPLICATE KEY UPDATE "+
+								"brk_number = VALUES(brk_number),"+
+								"client_number = VALUES(client_number),"+
+								"stock_abbrv = VALUES(stock_abbrv),"+
+								"stock_amount = VALUES(stock_amount)");
+				ps.setString(1,acc.getAccountNumber());
+				ps.setString(2,cid);
+				ps.setString(3,stock);
+				ps.setInt(4,quantity);
+				int retval = ps.executeUpdate();
+				System.out.printf("executeUpdate returned %d%n", retval);
+			}
+			connection.close();
+			return true;
+		} catch (SQLException sqle){
+			return false;
+		}
+
+	}
+
 
 	@Override
 	public Shift getShifts(String sid) {
@@ -336,6 +365,10 @@ public class Database implements DatabaseInterface {
 		if(account != null){
 			accounts.add(account);
 		}
+		account = getBrokerageAccount(client);
+		if(account != null){
+			accounts.add(account);
+		}
 
 
 		return accounts;
@@ -401,6 +434,26 @@ public class Database implements DatabaseInterface {
 
         return account;
     }
+
+    @Override
+	public BrokerageAccount getBrokerageAccount(Client client){
+		BrokerageAccount account;
+		try{
+			connection = this.getConnection();
+			Statement s = connection.createStatement();
+			ResultSet r = s.executeQuery("select * from brokerage_accounts where client_number = '" + client.getClientNumber() + "';");
+			r.next();
+			account = new BrokerageAccount(client, r.getString("brk_number"));
+
+			account.setStock(r.getString("stock_abbrv"));
+			account.setQuantity(r.getInt("stock_amount"));
+			connection.close();
+		} catch(SQLException sqle){
+			System.out.println(sqle.toString());
+			return null;
+		}
+		return account;
+	}
 
     @Override
 	public List<Employee> getEmployees(){

@@ -5,15 +5,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import Exception.*;
-import Account.Account;
-import Account.CheckingAccount;
-import Account.CreditAccount;
-import Account.LoanAccount;
+import Account.*;
 import HR.Shift;
 import User.Administrator;
 import User.Client;
 import User.Employee;
 import User.UserInterface;
+import yahoofinance.Stock;
 
 public interface DatabaseInterface {
 
@@ -30,6 +28,8 @@ public interface DatabaseInterface {
     boolean putCreditAccount(CreditAccount a, String cid);
 
     boolean putLoanAccount(LoanAccount a, String cid);
+
+    boolean putBrokerageAccount(BrokerageAccount acc, String cid, String stock, int quantity);
 
     Shift getShifts(String sid);
 
@@ -52,4 +52,8 @@ public interface DatabaseInterface {
     List<Employee> getEmployees();
 
     Connection getConnection();
+
+    BrokerageAccount getBrokerageAccount(Client client);
+
+
 }

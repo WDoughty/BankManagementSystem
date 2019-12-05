@@ -59,8 +59,14 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
 
     @Override
     public void valueChanged(ListSelectionEvent e) {
-        Account sv = (Account)((JList)e.getSource()).getSelectedValue();
-        new clientForm(userInterface,sv);
+        if(((JList) e.getSource()).getSelectedValue() instanceof CheckingAccount) {
+            Account sv = (Account) ((JList) e.getSource()).getSelectedValue();
+            new clientForm(userInterface, sv);
+        }
+        else if( ((JList) e.getSource()).getSelectedValue() instanceof BrokerageAccount){
+            Account sv = (Account) ((JList) e.getSource()).getSelectedValue();
+            new Brokerage(userInterface, sv);
+        }
     }
 
     public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
@@ -78,7 +84,7 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
             new LoanApplication(userInterface);
         }
         else if(e.getSource() == settingsButton){
-            //new Settings(userInterface);
+            new Settings(userInterface);
         }
         else if(e.getSource() == logoutButton){
             new LoginForm();
@@ -88,5 +94,6 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
             new HistoryForm(userInterface);
 
         }
+
     }
 }

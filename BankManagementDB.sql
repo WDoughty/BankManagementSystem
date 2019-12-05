@@ -76,4 +76,14 @@ CREATE TABLE transactions (
     FOREIGN KEY (client_number)
 		REFERENCES clients (client_number)
 );
+
+CREATE TABLE brokerage_accounts(
+    brk_number VARCHAR(50),
+    client_number VARCHAR(50),
+    stock_abbrv VARCHAR(10),
+    stock_amount DECIMAL(50,0),
+    PRIMARY KEY (brk_number),
+    FOREIGN KEY (client_number)
+        REFERENCES clients (client_number)
+);
     

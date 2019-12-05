@@ -6,7 +6,7 @@ import User.*;
 import java.util.Random;
 
 public class NumberGeneration {
-    private static String CheckPrefix = "1000",LoanPrefix = "3000",CreditPrefix= "2000",BankPrefix = "1234";
+    private static String CheckPrefix = "1000",LoanPrefix = "3000",CreditPrefix= "2000",BankPrefix = "1234", BrokeragePrefix = "9000";
     private Database db;
 
 
@@ -22,6 +22,9 @@ public class NumberGeneration {
         }
         else if(accountType.equalsIgnoreCase("credit")){
             accNum = CreditPrefix;
+        }
+        else if(accountType.equalsIgnoreCase("brokerage")){
+            accNum = BrokeragePrefix;
         }
 
         if(user instanceof Client){
