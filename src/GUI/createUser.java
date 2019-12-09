@@ -31,6 +31,10 @@ public class createUser implements ActionListener {
     private Database db;
 
 
+    /**
+     * Creates a create user form
+     * @param userInterface
+     */
     public createUser(UserInterface userInterface){
         List<String> list = new ArrayList<>();
         list.add("checking");
@@ -55,6 +59,10 @@ public class createUser implements ActionListener {
 
     }
 
+    /**
+     * Button Action Listener
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == createUserButton){
@@ -67,6 +75,9 @@ public class createUser implements ActionListener {
     }
 
 
+    /**
+     * Creates a new user
+     */
     public void makeUser(){
         if(!nameField.getText().isEmpty() && nameField.getText() !=null
                 & !passwordField.getText().isEmpty() && passwordField.getText() != null){

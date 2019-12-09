@@ -29,6 +29,10 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
     private UserInterface userInterface;
     private AccountInterface accountInterface;
 
+    /**
+     * Creates a new Account form
+     * @param userInterface
+     */
     public accountsForm(UserInterface userInterface){
         this.userInterface = userInterface;
         frame = View.getFrame();
@@ -58,6 +62,10 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
         statementButton.addActionListener(this);
     }
 
+    /**
+     * List Action Listener
+     * @param e
+     */
     @Override
     public void valueChanged(ListSelectionEvent e) {
         if(((JList) e.getSource()).getSelectedValue() instanceof CheckingAccount) {
@@ -71,6 +79,15 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
         }
     }
 
+    /**
+     * List Cell Renderer
+     * @param list
+     * @param value
+     * @param index
+     * @param isSelected
+     * @param cellHasFocus
+     * @return
+     */
     public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
         super.getListCellRendererComponent(list,value,index,isSelected,cellHasFocus);
         if(value instanceof Account){
@@ -80,6 +97,10 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
         return this;
     }
 
+    /**
+     * Button Action Listener
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == loanApply){

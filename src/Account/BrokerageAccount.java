@@ -17,18 +17,34 @@ public class BrokerageAccount extends Account {
         super(client, accountNumber);
     }
 
+    /**
+     * Returns the Stock symbol
+     * @return stock
+     */
     public String getStock(){
         return stock;
     }
 
+    /**
+     * Sets the stock symbol for this account
+     * @param stock
+     */
     public void setStock(String stock){
         this.stock = stock;
     }
 
+    /**
+     * Sets how many shares this account holds
+     * @param quantity
+     */
     public void setQuantity(int quantity){
         this.quantity = quantity;
     }
 
+    /**
+     * Returns the quantity of shares this account holds
+     * @return quantity
+     */
     public int getQuantity(){
         return quantity;
     }

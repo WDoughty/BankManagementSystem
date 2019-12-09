@@ -23,6 +23,10 @@ public class Settings implements ActionListener {
     private JFrame frame;
     private Database db;
 
+    /**
+     * Creates a new Settings form
+     * @param userInterface
+     */
     public Settings(UserInterface userInterface){
         db = new Database();
         this.userInterface = userInterface;
@@ -38,6 +42,10 @@ public class Settings implements ActionListener {
 
     }
 
+    /**
+     * Button Action Listener
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == emailButton){
@@ -55,6 +63,10 @@ public class Settings implements ActionListener {
         }
     }
 
+    /**
+     * Request change email address
+     * @param email
+     */
     public void changeEmail(String email){
         if(userInterface instanceof Client){
             ((Client) userInterface).setEmail(email);
@@ -63,11 +75,15 @@ public class Settings implements ActionListener {
 
     }
 
+    /**
+     * Requests password change
+     * @param password
+     */
     public void changePassword(String password){
         userInterface.setPassword(password);
         if(userInterface instanceof Client){
             db.putClient((Client) userInterface);
         }
-        //Do other classes
+
     }
 }

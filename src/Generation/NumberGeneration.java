@@ -10,7 +10,12 @@ public class NumberGeneration {
     private Database db;
 
 
-
+    /**
+     * Generates account numbers for user based on account type
+     * @param accountType String type of account
+     * @param user UserInterface
+     * @return String
+     */
     public static String accountNumberGenerator(String accountType, UserInterface user){
         String accNum="",
                 userNum="";
@@ -46,6 +51,12 @@ public class NumberGeneration {
 
     }
 
+
+    /**
+     * Generates a client number
+     * @param client
+     * @return String
+     */
     public static String clientNumberGenerator(Client client){
         if(client.getClientNumber() != null && !client.getClientNumber().isEmpty()){
             return client.getClientNumber();
@@ -55,6 +66,11 @@ public class NumberGeneration {
 
     }
 
+    /**
+     * Generates an employee number
+     * @param employee
+     * @return String
+     */
     public static String employeeNumberGenerator(Employee employee){
         if(employee.getEmployeeNumber() !=null && !employee.getEmployeeNumber().isEmpty()){
             return employee.getEmployeeNumber();

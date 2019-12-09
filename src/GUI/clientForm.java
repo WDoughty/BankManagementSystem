@@ -9,7 +9,7 @@ import User.Client;
 import User.UserController;
 import User.UserInterface;
 import View.View;
-
+import Exception.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +29,11 @@ public class clientForm implements ActionListener {
     private JLabel currentBalance;
     private JPanel clientPanel;
 
+    /**
+     * Creates a new Client Form
+     * @param userInterface
+     * @param accountInterface
+     */
     public clientForm(UserInterface userInterface, AccountInterface accountInterface) {
         db = new Database();
         this.accountInterface = accountInterface;
@@ -48,8 +53,13 @@ public class clientForm implements ActionListener {
     }
 
 
+    /**
+     * Button Listener
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
+        String message = "";
         if (e.getSource() == logoutButton) {
             new LoginForm();
         }
@@ -61,6 +71,9 @@ public class clientForm implements ActionListener {
                 System.out.println("Withdraws: $" + withdrawField.getText());
                 System.out.println("$" + accountController.getBalance());
                 currentBalance.setText("$" + accountController.getBalance());
+
+                message = "Withdraw of $" +withdrawField.getText() + " from account: " + userController.getUserAccountNumber();
+                updateEmail(message);
             }
             frame.getContentPane().repaint();
             }
@@ -72,14 +85,38 @@ public class clientForm implements ActionListener {
                 System.out.println("Deposits: $" + depositField.getText());
                 System.out.println("$" + accountController.getBalance());
                 currentBalance.setText("$" + accountController.getBalance());
+
+                message = "Deposit of $" +depositField.getText() + " into account: " +userController.getUserAccountNumber();
+                updateEmail(message);
+
             }
+
             frame.getContentPane().repaint();
         }
 
+
     }
 
+    /**
+     * Makes sure user input is correct
+     * @param s
+     * @return
+     */
     public boolean verifyInput(String s){
         return Double.parseDouble(s) >0;
+
+    }
+
+    /**
+     * Sends an email update
+     * @param message
+     */
+    public void updateEmail(String message){
+        try {
+            accountController.emailUpdate(userController.getEmail(), message);
+        }catch(EmailNotSentException ex){
+            ex.printStackTrace();
+        }
 
     }
 

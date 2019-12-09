@@ -144,14 +144,27 @@ public class UserController {
         }
     }
 
+
+    /**
+     * Sets the password for the User
+     * @param password
+     */
     public void setPassword(String password){
         model.setPassword(password);
     }
 
+    /**
+     * Returns the model of the User controller
+     * @return
+     */
     public UserInterface getModel(){
         return model;
     }
 
+    /**
+     * Returns the email of the User
+     * @return
+     */
     public String getEmail(){
         if(model instanceof Client) {
             return ((Client)model).getEmail();
@@ -159,6 +172,10 @@ public class UserController {
         return null;
     }
 
+    /**
+     * Sets the email for a user
+     * @param email
+     */
     public void setEmail(String email){
         if(model instanceof Client){
             ((Client)model).setEmail(email);

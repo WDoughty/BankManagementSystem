@@ -65,6 +65,11 @@ public class Account implements AccountInterface {
         return balance;
     }
 
+
+    /**
+     * Returns the account number of the account
+     * @return accountNumber
+     */
     public String getAccountNumber() {
         return accountNumber;
     }

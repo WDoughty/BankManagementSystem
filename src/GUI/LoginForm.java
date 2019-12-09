@@ -26,6 +26,9 @@ public class LoginForm implements ActionListener {
     private AccountInterface account;
     private Database db;
 
+    /**
+     * Creates a new Login Form
+     */
     public LoginForm(){
         frame = View.getFrame();
         frame.getContentPane().setVisible(false);
@@ -36,11 +39,18 @@ public class LoginForm implements ActionListener {
     }
 
 
+    /**
+     * Sets the login page
+     */
     public void loginPage(){
         frame.setContentPane(loginPanel);
         frame.setVisible(true);
     }
 
+    /**
+     * Login request
+     * @return boolean
+     */
     public boolean login()  {
         db = new Database();
         try {
@@ -82,7 +92,10 @@ public class LoginForm implements ActionListener {
     }
 
 
-
+    /**
+     * Button Action Listener
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == loginButton){

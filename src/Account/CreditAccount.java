@@ -51,6 +51,10 @@ public class CreditAccount extends Account {
         return interest;
     }
 
+    /**
+     * Returns the credit line for this account
+     * @return creditLine
+     */
     public double getCreditLine() {
         return creditLine;
     }

@@ -58,10 +58,18 @@ public class Client implements UserInterface {
 		return password;
 	}
 
+    /**
+     * Returns the email of the User
+     * @return email
+     */
 	public String getEmail(){
 	    return email;
     }
 
+    /**
+     * Sets the email address of the User
+     * @param email
+     */
     public void setEmail(String email){
 	    this.email = email;
     }

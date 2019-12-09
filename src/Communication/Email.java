@@ -7,6 +7,12 @@ import javax.activation.*;
 
 public class Email implements EmailInterface {
 
+    /**
+     * Sends an Email using SMTP
+     * @param to String email address
+     * @param update String message
+     * @return boolean
+     */
     public boolean SendEmail(String to, String update){
         String username = "bankmanagementtest@gmail.com";
         String password = "bankManagementTest";
@@ -31,7 +37,6 @@ public class Email implements EmailInterface {
             message.setSubject("Bank Management System");
             message.setText(update);
             Transport t = session.getTransport("smtps");
-            //t.connect();
             t.connect(host,username,password);
             t.sendMessage(message,message.getAllRecipients());
 

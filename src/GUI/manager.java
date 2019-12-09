@@ -15,6 +15,10 @@ public class manager implements ActionListener {
     private UserInterface user;
     private JFrame frame;
 
+    /**
+     * Creates a new Manager form
+     * @param user
+     */
     public manager(UserInterface user){
         this.user=user;
         frame = View.getFrame();
@@ -26,10 +30,14 @@ public class manager implements ActionListener {
 
     }
 
+    /**
+     * Button Action Listener
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == calculateExpenses){
-            ((Manager) user).getEmployeesHoursWorked();
+            ((Manager) user).getEmployees();
             double temp = ((Manager)user).calculatePayRollExpenses();
             payrollExpenses.setText("$" + temp);
             frame.getContentPane().setVisible(false);

@@ -13,6 +13,10 @@ public class employeeForm implements ActionListener {
     private JPanel employeePanel;
     private UserInterface userInterface;
 
+    /**
+     * Creates a new employee form
+     * @param userInterface
+     */
     public employeeForm(UserInterface userInterface){
         this.userInterface = userInterface;
        frame = View.getFrame();
@@ -26,6 +30,10 @@ public class employeeForm implements ActionListener {
 
     }
 
+    /**
+     * Button Action Listener
+     * @param e
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == createNewUserButton){

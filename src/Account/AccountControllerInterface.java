@@ -1,4 +1,5 @@
 package Account;
+import Exception.*;
 
 public interface AccountControllerInterface {
 
@@ -40,4 +41,6 @@ public interface AccountControllerInterface {
     double getInterestRate();
 
     AccountInterface getAccount();
+
+    void emailUpdate(String to, String update) throws EmailNotSentException;
 }

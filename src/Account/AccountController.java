@@ -1,6 +1,7 @@
 package Account;
 
 import Communication.Email;
+import Exception.*;
 
 public class AccountController implements AccountControllerInterface {
 
@@ -94,13 +95,25 @@ public class AccountController implements AccountControllerInterface {
         //Remove Account number from DB
     }
 
+    /**
+     * Returns the Account of the associated account controller
+     * @return AccountInterface
+     */
     public AccountInterface getAccount(){
         return model;
     }
 
-    public boolean emailUpdate(String to, String update){
+    /**
+     * Updates email request
+     * @param to Email address to send to
+     * @param update Message of the email
+     * @throws EmailNotSentException If the email can not be sent
+     */
+    public void emailUpdate(String to, String update) throws EmailNotSentException {
         Email email = new Email();
-        return email.SendEmail(to,update);
+        if(!email.SendEmail(to,update)){
+            throw new EmailNotSentException("Email not sent");
+        }
     }
 
 
