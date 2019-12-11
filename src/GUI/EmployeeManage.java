@@ -14,7 +14,6 @@ public class EmployeeManage implements ActionListener
     private JButton OKButton;
     private JButton logoutButton;
     private JButton backButton;
-    private JButton addToScheduleButton;
     private JPanel panel1;
     private JTextField name;
     private JTextField Position;
@@ -38,7 +37,6 @@ public class EmployeeManage implements ActionListener
         logoutButton.addActionListener(this);
         OKButton.addActionListener(this);
         comboBox1.addActionListener(this);
-        addToScheduleButton.addActionListener(this);
 
     }
 
@@ -60,12 +58,9 @@ public class EmployeeManage implements ActionListener
                     ((Employee) user).setPosition("Loan Specialist");
             }
             Position.setText(((Employee) user).getPosition());
-            frame.revalidate();
-        }
-
-        else if (e.getSource() == addToScheduleButton)
-        {
-
+            frame.getContentPane().setVisible(false);
+            frame.getContentPane().repaint();
+            frame.getContentPane().setVisible(true);
         }
 
         else if(e.getSource() == backButton)

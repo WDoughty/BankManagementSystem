@@ -49,7 +49,7 @@ public class manager implements ActionListener {
 
         if(e.getSource() == scheduleButton)
         {
-            new accountsATMform(user);
+            new Schedule(user);
         }
     }
 }
