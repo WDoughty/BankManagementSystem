@@ -523,6 +523,70 @@ public class Database implements DatabaseInterface {
 		}
 	}
 
+	public boolean putContact(String subject, String email, String body) {
+		try {
+			connection = this.getConnection();
+			Random rand = new Random();
+			String id = Integer.toString(rand.nextInt(999999998) + 1);
+			PreparedStatement ps = connection.prepareStatement(
+					"INSERT INTO customer_messages (msg_number, msg_subject, msg_email, msg_body)"+
+							"VALUES (?,?,?,?)"+
+							"ON DUPLICATE KEY UPDATE "+
+							"msg_number = VALUES(msg_number),"+
+							"msg_subject = VALUES(msg_subject),"+
+							"msg_email = VALUES(msg_email),"+
+							"msg_body = VALUES(msg_body)");
+			ps.setString(1,id);
+			ps.setString(2,subject);
+			ps.setString(3,email);
+			ps.setString(4,body);
+			int retval = ps.executeUpdate();
+			System.out.printf("executeUpdate returned %d%n", retval);
+
+			connection.close();
+			return true;
+		}
+		catch (SQLException e){
+			return false;
+		}
+	}
+
+	public boolean putAppointment(String name, String time, String date) {
+		try {
+			connection = this.getConnection();
+
+			Statement t = connection.createStatement();
+			ResultSet r = t.executeQuery("select * from appointments where apt_time = '" + time + "' AND apt_date = '" + date + "';");
+
+			while(r.next()) {
+				return false;
+			}
+
+			Random rand = new Random();
+			String id = Integer.toString(rand.nextInt(999999998) + 1);
+			PreparedStatement ps = connection.prepareStatement(
+					"INSERT INTO appointments (apt_number, apt_name, apt_time, apt_date)"+
+							"VALUES (?,?,?,?)"+
+							"ON DUPLICATE KEY UPDATE "+
+							"apt_number = VALUES(apt_number),"+
+							"apt_name = VALUES(apt_name),"+
+							"apt_time = VALUES(apt_time),"+
+							"apt_date = VALUES(apt_date)");
+			ps.setString(1,id);
+			ps.setString(2,name);
+			ps.setString(3,time);
+			ps.setString(4,date);
+			int retval = ps.executeUpdate();
+			System.out.printf("executeUpdate returned %d%n", retval);
+
+			connection.close();
+			return true;
+		}
+		catch (SQLException e) {
+			return false;
+		}
+	}
+
 
     @Override
 	public Connection getConnection() {

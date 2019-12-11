@@ -12,6 +12,7 @@ public class manager implements ActionListener {
     private JButton calculateExpenses;
     private JPanel managerPanel;
     private JLabel payrollExpenses;
+    private JButton scheduleButton;
     private UserInterface user;
     private JFrame frame;
 
@@ -26,6 +27,7 @@ public class manager implements ActionListener {
         frame.getContentPane().repaint();
         frame.setContentPane(managerPanel);
         calculateExpenses.addActionListener(this);
+        scheduleButton.addActionListener(this);
         frame.getContentPane().setVisible(true);
 
     }
@@ -43,6 +45,11 @@ public class manager implements ActionListener {
             frame.getContentPane().setVisible(false);
             frame.getContentPane().repaint();
             frame.getContentPane().setVisible(true);
+        }
+
+        if(e.getSource() == scheduleButton)
+        {
+            new Schedule(user);
         }
     }
 }
