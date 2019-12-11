@@ -86,4 +86,20 @@ CREATE TABLE brokerage_accounts(
     FOREIGN KEY (client_number)
         REFERENCES clients (client_number)
 );
+
+CREATE TABLE customer_messages(
+	msg_number VARCHAR(50),
+    msg_subject VARCHAR(100),
+    msg_email VARCHAR(50),
+    msg_body VARCHAR(1000),
+    PRIMARY KEY (msg_number)
+);
+
+CREATE TABLE appointments(
+	apt_number VARCHAR(50),
+    apt_name VARCHAR(50),
+    apt_time VARCHAR(50),
+    apt_date VARCHAR(50),
+    PRIMARY KEY (apt_number)
+);
     
