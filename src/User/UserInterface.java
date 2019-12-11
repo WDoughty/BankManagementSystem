@@ -27,6 +27,4 @@ public interface UserInterface {
      */
     String getPassword();
 
-
-
 }

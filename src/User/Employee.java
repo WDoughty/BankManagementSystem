@@ -10,6 +10,7 @@ public class Employee implements UserInterface {
     private double hoursWorked;
     private double hourlyPay;
     private EmployeeTimeCardInterface timeCard;
+    private String position;
 
     public Employee(){
         timeCard = new EmployeeTimeCard();
@@ -115,4 +116,21 @@ public class Employee implements UserInterface {
         return timeCard;
     }
 
+    /**
+     * Sets the employees position within the bank.
+     * @param position
+     */
+    public void setPosition(String position)
+    {
+        this.position = position;
+    }
+
+    /**
+     * Returns the employees position within the bank.
+     * @return position
+     */
+    public String getPosition()
+    {
+        return position;
+    }
 }
