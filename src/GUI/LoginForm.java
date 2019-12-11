@@ -20,6 +20,7 @@ public class LoginForm implements ActionListener {
     private JPasswordField passwordField;
     private JButton loginButton;
     private JLabel errLabel;
+    private JButton supportButton;
     private AccountControllerInterface accountController;
     private UserInterface userInterface;
     private UserController userController;
@@ -35,6 +36,7 @@ public class LoginForm implements ActionListener {
         frame.getContentPane().repaint();
         loginPage();
         loginButton.addActionListener(this);
+        supportButton.addActionListener(this);
 
     }
 
@@ -106,6 +108,9 @@ public class LoginForm implements ActionListener {
                     frame.getContentPane().setVisible(true);
                 }
 
+        }
+        if(e.getSource() == supportButton) {
+            new CustomerSupportForm();
         }
 
     }
