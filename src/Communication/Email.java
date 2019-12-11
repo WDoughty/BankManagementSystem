@@ -4,6 +4,7 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
+import Exception.*;
 
 public class Email implements EmailInterface {
 
@@ -13,7 +14,7 @@ public class Email implements EmailInterface {
      * @param update String message
      * @return boolean
      */
-    public boolean SendEmail(String to, String update){
+    public boolean SendEmail(String to, String update) throws EmailNotSentException {
         String username = "bankmanagementtest@gmail.com";
         String password = "bankManagementTest";
         String host = "smtp.gmail.com";
@@ -26,6 +27,13 @@ public class Email implements EmailInterface {
         props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         props.put("mail.smtp.starttls.enable", "true");
 
+        try{
+            if(to.trim().isEmpty() || to == null){
+
+            }
+        }catch(NullPointerException e){
+            throw new EmailNotSentException("Email address not found");
+        }
 
 
         Session session = Session.getDefaultInstance(props);

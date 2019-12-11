@@ -4,6 +4,7 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
+import Exception.*;
 
 public interface EmailInterface {
 
@@ -13,5 +14,5 @@ public interface EmailInterface {
      * @param update String message
      * @return boolean
      */
-    boolean SendEmail(String to, String update);
+    boolean SendEmail(String to, String update) throws EmailNotSentException;
 }

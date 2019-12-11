@@ -28,6 +28,7 @@ public class clientForm implements ActionListener {
     private JButton logoutButton;
     private JLabel currentBalance;
     private JPanel clientPanel;
+    private JButton backButton;
 
     /**
      * Creates a new Client Form
@@ -47,7 +48,9 @@ public class clientForm implements ActionListener {
         withdrawButton.addActionListener(this);
         logoutButton.addActionListener(this);
         depositButton.addActionListener(this);
+        backButton.addActionListener(this);
         currentBalance.setText("$" + accountController.getBalance());
+
 
 
     }
@@ -62,6 +65,9 @@ public class clientForm implements ActionListener {
         String message = "";
         if (e.getSource() == logoutButton) {
             new LoginForm();
+        }
+        else if (e.getSource() == backButton){
+            new accountsForm(userController.getModel());
         }
         else if (e.getSource() == withdrawButton) {
             if (!withdrawField.getText().isEmpty() && verifyInput(withdrawField.getText())) {

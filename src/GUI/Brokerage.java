@@ -24,6 +24,8 @@ public class Brokerage implements ActionListener {
     private JLabel priceLabel;
     private JTextField quantityField;
     private JButton backButton;
+    private JLabel stockNameLabel;
+    private JLabel currentStock;
     private UserController user;
     private JFrame frame;
     private Database db;
@@ -46,6 +48,7 @@ public class Brokerage implements ActionListener {
         searchButton.addActionListener(this);
         backButton.addActionListener(this);
         buyButton.addActionListener(this);
+        currentStock.setText("Current Stock held: " + ((BrokerageAccount) sv).getStock() + " \n  Quantity: " + ((BrokerageAccount) sv).getQuantity());
 
     }
 
@@ -60,6 +63,7 @@ public class Brokerage implements ActionListener {
                 Stock stock = YahooFinance.get(stockSearchField.getText());
                 BigDecimal price = stock.getQuote().getPrice();
                 priceLabel.setText("$" + price);
+                stockNameLabel.setText(stock.getName() + ": " + stock.getSymbol());
 
             } catch (IOException ex) {
                 ex.printStackTrace();
