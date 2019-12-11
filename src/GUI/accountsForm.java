@@ -77,6 +77,13 @@ public class accountsForm extends DefaultListCellRenderer implements ListSelecti
             UserController userController = new UserController(userInterface);
             new Brokerage(userController, sv);
         }
+
+        else if(((JList) e.getSource()).getSelectedValue() instanceof LoanAccount
+                || ((JList) e.getSource()).getSelectedValue() instanceof  CreditAccount){
+            Account sv = (Account) ((JList) e.getSource()).getSelectedValue();
+            UserController userController = new UserController(userInterface);
+            new clientForm(userInterface,sv);
+        }
     }
 
     /**
