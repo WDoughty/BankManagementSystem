@@ -2,6 +2,7 @@ package GUI;
 
 import Database.Database;
 import User.Employee;
+import User.Manager;
 import User.UserInterface;
 import View.View;
 
@@ -53,7 +54,7 @@ public class Schedule extends DefaultListCellRenderer implements ListSelectionLi
     {
         if(e.getSource() == backButton)
         {
-            new employeeForm(user);
+            new manager(user);
         }
 
         if(e.getSource() == logoutButton)
@@ -66,6 +67,6 @@ public class Schedule extends DefaultListCellRenderer implements ListSelectionLi
     public void valueChanged(ListSelectionEvent e)
     {
         Employee emp = (Employee)((JList)e.getSource()).getSelectedValue();
-        new EmployeeManage(emp);
+        new EmployeeManage(emp,user);
     }
 }

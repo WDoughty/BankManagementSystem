@@ -7,7 +7,7 @@ import View.View;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import Database.*;
 public class EmployeeManage implements ActionListener
 {
     private JComboBox comboBox1;
@@ -16,13 +16,16 @@ public class EmployeeManage implements ActionListener
     private JButton backButton;
     private JPanel panel1;
     private JTextField name;
-    private JTextField Position;
-    private UserInterface user;
+    private JLabel Position;
+    private UserInterface user,other;
     private JFrame frame;
+    private Database db;
 
-    public EmployeeManage(UserInterface user)
+    public EmployeeManage(UserInterface user, UserInterface other)
     {
+        db = new Database();
         this.user = user;
+        this.other = other;
         frame = View.getFrame();
         frame.getContentPane().setVisible(false);
         frame.getContentPane().repaint();
@@ -48,16 +51,18 @@ public class EmployeeManage implements ActionListener
             int index = comboBox1.getSelectedIndex();
             switch (index)
             {
-                case 1:
+                case 0:
                     ((Employee) user).setPosition("Teller");
                     break;
-                case 2:
+                case 1:
                     ((Employee) user).setPosition("Security");
                     break;
-                case 3:
+                case 2:
                     ((Employee) user).setPosition("Loan Specialist");
+                    break;
             }
             Position.setText(((Employee) user).getPosition());
+            db.putEmployee((Employee) user);
             frame.getContentPane().setVisible(false);
             frame.getContentPane().repaint();
             frame.getContentPane().setVisible(true);
@@ -65,7 +70,7 @@ public class EmployeeManage implements ActionListener
 
         else if(e.getSource() == backButton)
         {
-            new Schedule(user);
+            new Schedule(other);
         }
 
         else if(e.getSource() == logoutButton)

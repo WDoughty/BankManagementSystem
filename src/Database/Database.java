@@ -79,10 +79,7 @@ public class Database implements DatabaseInterface {
 
 	@Override
 	public boolean putEmployee(Employee e) {
-		String employeeType= "employee";
-		if(e instanceof Manager){
-			employeeType = "manager";
-		}
+
 		try {
 			connection = this.getConnection();
 			//Statement s = connection.createStatement();
@@ -102,7 +99,7 @@ public class Database implements DatabaseInterface {
 				ps.setString(3,e.getPassword());
 				ps.setDouble(4,e.getHoursWorked());
 				ps.setDouble(5,e.getHourlyPay());
-				ps.setString(6, employeeType);
+				ps.setString(6,e.getPosition());
 				int retval = ps.executeUpdate();
 				System.out.printf("executeUpdate returned %d%n", retval);
 			}
@@ -270,6 +267,7 @@ public class Database implements DatabaseInterface {
 				employee.setName(r.getString("emp_name"));
 				employee.setPassword(r.getString("emp_password"));
 				employee.setHourlyPay(r.getDouble("emp_pay"));
+				employee.setPosition(r.getString("employee_type"));
 				connection.close();
 			}
 			else{
@@ -464,6 +462,7 @@ public class Database implements DatabaseInterface {
 				temp.setName(r.getString("emp_name"));
 				temp.setHoursWorked(r.getInt("emp_hours_worked"));
 				temp.setHourlyPay(r.getDouble("emp_pay"));
+				temp.setPosition(r.getString("employee_type"));
 				list.add(temp);
 			}
 		}

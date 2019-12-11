@@ -20,7 +20,7 @@
       </component>
       <component id="ecea2" class="javax.swing.JTextField" binding="depositField">
         <constraints>
-          <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
@@ -28,7 +28,7 @@
       </component>
       <component id="64736" class="javax.swing.JButton" binding="depositButton" default-binding="true">
         <constraints>
-          <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Deposit"/>
@@ -36,7 +36,7 @@
       </component>
       <component id="4a168" class="javax.swing.JTextField" binding="withdrawField">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
@@ -44,7 +44,7 @@
       </component>
       <component id="64325" class="javax.swing.JButton" binding="withdrawButton" default-binding="true">
         <constraints>
-          <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Withdraw"/>
@@ -52,7 +52,7 @@
       </component>
       <component id="13934" class="javax.swing.JButton" binding="logoutButton" default-binding="true">
         <constraints>
-          <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Logout"/>
@@ -60,20 +60,12 @@
       </component>
       <component id="a78ac" class="javax.swing.JLabel">
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+          <grid row="2" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
             <preferred-size width="147" height="16"/>
           </grid>
         </constraints>
         <properties>
           <text value="Withdraw"/>
-        </properties>
-      </component>
-      <component id="289e7" class="javax.swing.JLabel">
-        <constraints>
-          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Current Balance:"/>
         </properties>
       </component>
       <component id="589db" class="javax.swing.JLabel" binding="currentBalance">
@@ -91,6 +83,21 @@
         </constraints>
         <properties>
           <text value="Back"/>
+        </properties>
+      </component>
+      <hspacer id="dec42">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="96" height="11"/>
+          </grid>
+        </constraints>
+      </hspacer>
+      <component id="289e7" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Current Balance:"/>
         </properties>
       </component>
     </children>
