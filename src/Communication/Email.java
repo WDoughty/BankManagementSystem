@@ -15,8 +15,6 @@ public class Email implements EmailInterface {
      * @return boolean
      */
     public boolean SendEmail(String to, String update) throws EmailNotSentException {
-        String username = "bankmanagementtest@gmail.com";
-        String password = "bankManagementTest";
         String host = "smtp.gmail.com";
 
         Properties props = System.getProperties();
